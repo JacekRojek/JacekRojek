@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Statics</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-statics/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="14 Jun 2016" class="post-meta__date date">14 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Statics</h1>
+  </header>
+
+  <section class="post">
+    <p>Static keyword is used to access the method or variable without creating instance of the class. Static effectively  means ”associated with a type instead of any one instance of the type”. This keyword can be used in multiple structures. IN this article i’ll focus on static keyword used with methods, classes and variables. First lets take look at variables.</p>
+<h3>Static Variables</h3>
+<p>Static variables allows to access the values from other class,if its public, without creating the instance of the object.</p>
+
+<p>In My example use MyClass to store two static fields with initial values. I can acess those variabels from Program Class. I dont need instance of the class to call the variables.</p>
+
+<p>[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+      Console.WriteLine(MyClass.i.ToString()+" "+MyClass.name);
+  }
+}</p>
+
+<p>class MyClass
+{
+  public static int i=0;
+  public static string name="John";
+}
+[/code]</p>
+
+<h3>Static  Methods</h3>
+
+<p>To call static method we don’t need  an instance of the class—this makes them slightly faster. Static methods can be both public or private.  A static method cannot access non-static class level members. It has no “this” pointer. We can not refer to non-static fields from static method.</p>
+
+<p>This is modified version of previous example. This time I have just one static method in MyClass. I’m calling this method from Program class without creating the instance of an object.</p>
+
+<p> </p>
+
+<p>[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+      MyClass.Print();
+  }</p>
+
+<p>}
+class MyClass
+{
+  public static void Print()
+  {
+     Console.WriteLine("This is Static method");
+  }
+}
+[/code]
+ </p>
+<h3>Static Classes</h3>
+<p>A static class is never instantiated. The static keyword on a class enforces that a type not be created with a constructor. Class with static keyword can not have any instances.This eliminates misuse of the class.</p>
+
+<p>A static class is a class which can only contain static members. Like variables and methods from previous examples.</p>
+
+<p>[code language=”csharp”]
+static class MyClass
+// Line below can not be executed.</p>
+
+<p>// MyClass a = new MyClass();
+[/code]</p>
+
+<p>Now you know the basic implementation of static keyword it can be useful when working with large and complex projects whits a lot of connections. Statics can improve the performance and make variables/methods easier to access. In my Unity Tutorials I’ll demonstrate the use of statics in real word examples. Stay Awesome!</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>

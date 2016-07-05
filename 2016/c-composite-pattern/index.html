@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Composite Pattern</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-composite-pattern/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="25 Jun 2016" class="post-meta__date date">25 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Composite Pattern</h1>
+  </header>
+
+  <section class="post">
+    <p><a href="http://pastebin.com/dSAyApP2">Link to source code for this post</a></p>
+
+<p>Composite pattern is used to create a tree structure, where every item of the structure implements the same interface. Therefore methods declared in interface can performed on every item in the structure. This pattern classifies each element in the tree as a composite or a leaf. A composite means that there can be other elements below it, whereas a leaf cannot have any elements below it.</p>
+
+<p>To demonstrate the implementation of this pattern I’ll use an example of inventory where player can have Items( leafs ) and Backpack ( composite ). Player will be able to loop through all items in inventory and return the name of the items.</p>
+
+<p> </p>
+<h3>UML diagram</h3>
+<p><img class="alignnone size-full wp-image-3198" src="https://indiedevart.files.wordpress.com/2016/06/l5.png" alt="l5" width="528" height="408" /></p>
+
+<p> </p>
+
+<p>First thing to create is the Component interface that will be inherited by all items in the structure.</p>
+
+<p>[code language=”csharp”]
+public interface IInventory
+{
+  string Name { get; set; }
+  void PrintName();
+}
+[/code]
+It acts as the base class for all the objects within the hierarchy. I’m creating name property for all items. you can find more about <a href="https://indiedevart.wordpress.com/2016/06/11/c-properties/">properties </a>on my recent post about it.</p>
+
+<p>Next thing is the implementation of the interface in Backpack Class that will be used to store Items or other Backpacks. To do this You need method for adding and removing items. Objects will be stored in <a href="https://indiedevart.wordpress.com/2016/05/12/introduction-to-generics/">generic List.</a></p>
+
+<p>[code language=”csharp”]</p>
+
+<p>public class Backpack : IInventory, IEnumerable&lt;IInventory&gt;
+{
+  private List&lt;IInventory&gt; _subordinates = new List&lt;IInventory&gt;();</p>
+
+<p>public string Name { get; set; }</p>
+
+<p>public void AddSubordinate(IInventory subordinate)
+  {
+    _subordinates.Add(subordinate);
+  }</p>
+
+<p>public void RemoveSubordinate(IInventory subordinate)
+  {
+    _subordinates.Remove(subordinate);
+  }</p>
+
+<p>public IInventory GetSubordinate(int index)
+  {
+    return _subordinates[index];
+  }</p>
+
+<p>public void PrintName()
+  {
+    Console.WriteLine(Name);
+  }
+  public IEnumerator&lt;IInventory&gt; GetEnumerator()
+  {
+    foreach (IInventory subordinate in _subordinates)
+    {
+      yield return subordinate;
+    }
+  }</p>
+
+<p>IEnumerator IEnumerable.GetEnumerator()
+  {
+    return GetEnumerator();
+  }
+}
+[/code]
+Next thing is  to create an object Class, this class will be used to represent single item in inventory.</p>
+
+<p>[code language=”csharp”] public class Item : IInventory
+{
+  public string Name { get; set; }</p>
+
+<p>public void PrintName()
+  {
+    Console.WriteLine(Name);
+  }
+}[/code]
+Last thing to do is the Client site that will create the structure based on the created Interface and Classes.</p>
+
+<p>[code language=”csharp”] class Program
+{
+  static void Main(string[] args)
+  {
+    Backpack inventory = new Backpack { Name = "Inventory" };
+    Backpack backpack = new Backpack { Name = "Backpack" };</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>inventory.AddSubordinate(backpack);
+inventory.AddSubordinate(new Item { Name = &amp;quot;Sword&amp;quot;});
+inventory.AddSubordinate(new Item { Name = &amp;quot;Armor&amp;quot; });
+
+backpack.AddSubordinate(new Item { Name = &amp;quot;Shield&amp;quot; });
+
+Console.WriteLine(&amp;quot;List of items in inventory&amp;quot;);
+
+  foreach (IInventory element in inventory)
+  {
+     element.PrintName();
+  }
+Console.ReadKey();    }  }[/code] In this example Backpack class is used to create rot object for the tree. Where new backpack and few new items are added. Thanks to implementation of IEnumerable interface we can loop through items in the backpack class.
+</code></pre>
+</div>
+
+<p>To conclude, Composite pattern compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly. I hope you find this tutorial useful. If you have any questions feel free to ask in comments. In next part I’ll cover yet another design pattern. Stay Awesome!</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>

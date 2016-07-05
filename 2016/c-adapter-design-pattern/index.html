@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Adapter Design Pattern</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-adapter-design-pattern/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="20 Jun 2016" class="post-meta__date date">20 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Adapter Design Pattern</h1>
+  </header>
+
+  <section class="post">
+    <p>Next pattern on my list is called adapter. This is another type of structural pattern. <strong>Adapter</strong> is the object which lets two mutually incompatible interfaces communicate with each other. Adapter pattern acts as a bridge between two incompatible interfaces. This pattern involves a single class called adapter which is responsible for communication between two independent or incompatible interfaces.</p>
+
+<p> </p>
+
+<p><img class="alignleft size-thumbnail wp-image-2941" src="https://indiedevart.files.wordpress.com/2016/06/248-goravel-uk-swiss-switzerland-adapter-plug.jpg?w=150" alt="248-goravel-uk-swiss-switzerland-adapter-plug" width="150" height="150" />Most popular example that illustrate this problem is electrical socket adapter plug that changes. For example UK is using different sockets than rest of EU. That’s forcing people to use adapters.</p>
+
+<p> </p>
+
+<p> </p>
+
+<p>To demonstrate this pattern I’ll use simplified example of game mechanics that have Interface of enemies, but one of the enemies is different than others and don’t have implementation of Attack method.  Instead this specific enemy is casting spells.</p>
+
+<p>UML diagram</p>
+
+<p><img class="alignnone size-full wp-image-2942" src="https://indiedevart.files.wordpress.com/2016/06/l.png" alt="l" width="1028" height="534" /></p>
+
+<p> </p>
+
+<p>Lest begin by crating SpecialEnemy class that’s using CastSpell method. That is called Adaptee and will be used later in Adapter Class.</p>
+
+<p>[code language=”csharp”]
+class SpecialEnemy
+{
+  public string CastSpell()
+  {
+     return "using spell";
+  }
+}[/code]
+I will use return string to simplify the process.</p>
+
+<p>Next lest create Interface IEnemy for managing the enemies behaviour, in this case it’s only one method for Attack.</p>
+
+<p>[code language=”csharp”]
+interface IEnemy
+{
+  string Attack();
+}[/code]
+Now we need to inherit this interface by EnemyAdapter Class that will connect both pieces together.</p>
+
+<p>[code language=”csharp”]
+class EnemyAdapter: IEnemy
+{
+  SpecialEnemy e = new SpecialEnemy();
+  public string Attack()
+  {
+     return e.CastSpell();
+  }
+}[/code]
+We need to add reference to the Adaptee in order to have access to CastSpell method. This way we can use the Attack Method without implementation it SpecialEnemy Adaptee.</p>
+
+<p>Last step is to call the Enemy Attack method in client Class.</p>
+
+<p>[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+    IEnemy enemy = new EnemyAdapter();
+    Console.WriteLine(enemy.Attack());
+    Console.ReadLine();
+  }
+}[/code]
+As an output we get “using spell” string displayed.</p>
+
+<p>This example was oversimplified, but it demonstrates the idea behind this simple pattern. I hope you will find it useful. In next article I’ll demonstrate another exciting creational Pattern called Builder. Stay Awesome!</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>
