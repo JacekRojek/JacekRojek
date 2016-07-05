@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Builder Design Pattern</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-builder-design-pattern/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="21 Jun 2016" class="post-meta__date date">21 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Builder Design Pattern</h1>
+  </header>
+
+  <section class="post">
+    <p>In this article you will learn how to implement builder design pattern. This is one of structural patterns. You can use it when you need to have control over how complex objects would be created at runtime. This pattern gives you step by step approach on the object creation process. This is useful if you want to reuse the same creation process to build different representations. I’ll demonstrate the implementation of the pattern on simplified  real word example. And I’ll explain it step by step.</p>
+
+<p>To show you the pattern I created the system of creating two types of enemies, each process of creation takes multiple steps, that’s good opportunity for using builder.</p>
+<h3>UML diagram:</h3>
+<p><img class=" size-full wp-image-2949 aligncenter" src="https://indiedevart.files.wordpress.com/2016/06/l1.png" alt="l1" width="870" height="395" /></p>
+
+<p> </p>
+<ol class="orderlist">
+	<li><b>IEnemy</b> - Builder interface</li>
+	<li><b>EnemyTypeA </b>and<b> EnemyTypeB</b>- Concrete Builder</li>
+	<li><b>Enemy</b>- Product</li>
+	<li><b>EnemyCreator </b>- Director</li>
+</ol>
+<p> </p>
+
+<p>So first let’s create an enemy Class, we will instantiate objects of this class in Concrete Builders.</p>
+
+<p>[code language=”csharp”]
+class Enemy
+{
+  public string model;
+  public string behaviour;
+  public string components;
+}[/code]
+Here we have three public variables just to  demonstrate the example.</p>
+
+<p>Next we need Builder interface that will contains all the method that will be implemented by Enemies Classes. And we have Get Enemy method that will return the Enemy Class instance after competing the construction process.</p>
+
+<p>[code language=”csharp”]
+interface IEnemy
+{
+  void SelectModel();
+  void SelectBehaviour();
+  void AddComponents();</p>
+
+<p>Enemy GetEnemy();
+}[/code]</p>
+
+<p> </p>
+
+<p>Next step is to create Classes based on the interface. Each class will have unique implementation of the interface methods.  In order to get access to Enemy Class properties we need to create instance of this Class.</p>
+
+<p>[code language=”csharp”]
+class EnemyTypeA : IEnemy
+{
+  Enemy enemy = new Enemy();
+  public void AddComponents()
+  {
+    enemy.components="Components Added";
+  }</p>
+
+<p>public void SelectBehaviour()
+  {
+    enemy.behaviour= "Behaviour Type A Selected";
+  }</p>
+
+<p>public void SelectModel()
+  {
+     enemy.model = "Body Type A Selected";
+  }
+  public Enemy GetEnemy()
+  {
+     return enemy;
+  }
+}
+//EnemyTypeB
+class EnemyTypeB : IEnemy
+{
+  Enemy enemy = new Enemy();
+  public void AddComponents()
+  {
+     enemy.components = "Components Added";
+  }</p>
+
+<p>public void SelectBehaviour()
+  {
+     enemy.behaviour = "Behaviour Type B Selected";
+  }</p>
+
+<p>public void SelectModel()
+  {
+     enemy.model = "Body Type B Selected";
+  }
+  public Enemy GetEnemy()
+  {
+     return enemy;
+  }
+}[/code]</p>
+
+<p> </p>
+
+<p>Now it’s time for creating Director that will contain the logic behind creating new enemy. In Class constructor we pass IEnemy interface, this way we can pass any Class that inhirates form this interface.</p>
+
+<p>[code language=”csharp”]
+class EnemyCreator
+{
+  private readonly IEnemy enemyBuilder;</p>
+
+<p>public EnemyCreator( IEnemy enemyType)
+  {
+     enemyBuilder = enemyType;
+  }
+  public Enemy ConstructEnemy()
+  {
+    enemyBuilder.SelectBehaviour();
+    enemyBuilder.SelectModel();
+    enemyBuilder.AddComponents();</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>return enemyBuilder.GetEnemy();   } }[/code] Construct Enemy method return instance of Enemy Class with new properties.
+</code></pre>
+</div>
+
+<p>Last thing to complete the implementation is to create Client Class that will  create instances of each enemy type.</p>
+
+<p>[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+  var enemyCreator = new EnemyCreator(new EnemyTypeA());
+  var enemy = enemyCreator.ConstructEnemy();
+  enemy.ShowInfo();
+  Console.WriteLine("<strong>__</strong><strong>__</strong><strong>__</strong>_____");
+  enemyCreator = new EnemyCreator(new EnemyTypeB());
+  enemy = enemyCreator.ConstructEnemy();
+  enemy.ShowInfo();
+  Console.ReadLine();
+  }
+}[/code]</p>
+
+<p> </p>
+
+<p>To conclude, Builder pattern Separates the construction of a complex object from its representation so that the same construction process can create different representations. I hope you found it useful and you will implement this pattern to you programs. I next article I’ll cover another exciting design patter. Stay Awesome!</p>
+
+<p><a href="http://pastebin.com/gsiQ30wd">Link To Full Source Code </a></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Observer Design Pattern</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-observer-design-pattern/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="22 Jun 2016" class="post-meta__date date">22 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Observer Design Pattern</h1>
+  </header>
+
+  <section class="post">
+    <p>This is very popular behavioural pattern. As the name suggests, the Observer Pattern is a pattern where the important objects are “observed” or watched for changes. This pattern is useful when we want to pass message from one object(subject) to multiple objects(observers).  Observers are not related with each other, but every one of them needs to inherit from IObserver interface.</p>
+
+<p>To demonstrate the implementation of the pattern I’ll use an example with Enemy Class sending message to Subscriber when health is changed. Message will be sent to UserInterface and DifferentUnit Classes.</p>
+
+<p>UML diagram:</p>
+
+<p><img class="alignnone size-full wp-image-2976" src="https://indiedevart.files.wordpress.com/2016/06/l2.png" alt="l2" width="830" height="527" /></p>
+
+<p> </p>
+
+<p> </p>
+
+<p>First we need to create IObserver Interface that will be used as a base for Concrete Classes.</p>
+
+<p>[code language=”csharp”]
+public interface IObserver
+{
+  void Update();
+}[/code]
+Simple as that. Next we need to write implementation of this Interface in  Concrete Classes.</p>
+
+<p>[code language=”csharp”]
+public class UserInteface : IObserver
+{
+  public void Update()
+  {
+     Console.WriteLine("Interface Updated");
+  }
+}
+public class DifferentUnit : IObserver
+{
+  public void Update()
+  {
+     Console.WriteLine("Relation Updated");
+  }
+}[/code]
+In this example we don’t need any extra parameters, just implementation of an Update() method.</p>
+
+<p>Now lets move our attention to Subject site.  Subject interface need methods for subscribing and unsubsribing Observers. And method for Notifing the Listeners about the cahnge.</p>
+
+<p>[code language=”csharp”]
+interface IEnemy
+{
+  void Subscribe(IObserver observer);
+  void Unsubscribe(IObserver observer);
+  void Notify();
+}[/code]</p>
+
+<p> </p>
+
+<p>In Enemy class I’m using may techniques like <a href="https://indiedevart.wordpress.com/2016/06/11/c-properties/">Properties</a>, <a href="https://indiedevart.wordpress.com/2016/05/12/introduction-to-generics/">Generic List</a>, <a href="https://indiedevart.wordpress.com/2016/05/25/lambda-expressions/">Lambda Expressin</a>, click on links if you want to learn more about them.</p>
+
+<p>Enemy class inherits from IEnemy interface. It contains generic list of Observers, using interface as an object allows you to store objects of any class that inherits form IObserver interface. Notify() is called whenever health value is changing. Subscribe and Unsubscribe methods are using methods from List library</p>
+
+<p>[code language=”csharp”]
+public class Enemy : IEnemy
+{
+  private List&lt;IObserver&gt; observers = new List&lt;IObserver&gt;();
+  private int _health=10;
+  public int Health
+  {
+    get { return _health; }
+    set
+    {
+      _health = value;
+      Notify();
+    }
+  }</p>
+
+<p>public void Notify()
+  {
+     observers.ForEach(x =&gt; x.Update());
+  }</p>
+
+<p>public void Subscribe(IObserver observer)
+  {
+     observers.Add(observer);
+  }</p>
+
+<p>public void Unsubscribe(IObserver observer)
+  {
+     observers.Remove(observer);
+  }
+}[/code]
+Last part of implementation contains Client Class that will be used to create instances of Enemy Class and to display the final output.</p>
+
+<p>[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+  Enemy subject = new Enemy();</p>
+
+<p>IObserver observer1 = new UserInteface();
+  subject.Subscribe(observer1);</p>
+
+<p>subject.Subscribe(new DifferentUnit());
+  subject.Health++;
+  Console.WriteLine("——————–");
+  subject.Unsubscribe(observer1);
+  subject.Health–;
+  Console.ReadLine();
+  }
+}[/code]
+Here you can see that two Concrete Classes are added to the Observer List by calling subscription method. Changing health value causes Notify() method that prints the values to the console. Later I unsubscribe one item from Observer and I’m changing the value once again, this time by decrementing the health value.</p>
+
+<p>To conclude, Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependants are notified and updated automatically.</p>
+
+<p><a href="http://pastebin.com/bkTxxWZm">Link to source code for this pattern.</a></p>
+
+<p>In Unity Engine this massaging system can be created with List of Events. You can find how to build messaging system in Unity in my article <a href="https://indiedevart.wordpress.com/2016/06/07/unity-eventmanager/">here.</a> In my next article You will learn how to implement another exciting design patter. Stay Awesome!</p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>

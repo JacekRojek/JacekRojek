@@ -1,0 +1,1644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JacekRojek</title>
+    <description>Software development blog</description>
+    <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//</link>
+    <atom:link href="https://jacekrojek.github.io/JacekRojek//JacekRojek//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 05 Jul 2016 17:48:01 +0100</pubDate>
+    <lastBuildDate>Tue, 05 Jul 2016 17:48:01 +0100</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>C# Decorator Design Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/XhWGM7LE&quot;&gt;Link to Source code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this article You will learn how to implement decorator pattern in C#. Decorator pattern allows to modify an object dynamically it simplifies the code by adding new functionality at runtime. Adding new functionality to the object doesn’t effect the initial class structure.&lt;/p&gt;
+
+&lt;p&gt;In my example I’ll simulate the process of enchanting an item in RPG game.&lt;/p&gt;
+&lt;h2&gt;UML Diagram:&lt;/h2&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3614&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l11.png&quot; alt=&quot;l11&quot; width=&quot;750&quot; height=&quot;452&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Component&lt;/h2&gt;
+&lt;p&gt;This interface will be used as base for decorator and concrete items. It contains methods that will return properties of an item.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public interface IItem
+{
+    string GetName();
+    int GetValue();
+}
+[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Base Items like armor or Sword will implement this interface, And return fixed values.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Sword : IItem
+{
+    public string GetName()
+    {
+        return &quot;Iron Sword&quot;;
+    }&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public int GetValue()
+{
+    return 20;
+} } [/code]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;Decorator&lt;/h2&gt;
+&lt;p&gt;This is the key part of the pattern, it maintains a reference to a Component object and defines an interface that conforms to Component’s interface. In my example this will be represented as an Enchantment of the item. Decorater will have form of abstract class and will have protected constructor&lt;/p&gt;
+&lt;blockquote&gt;A protected member is accessible within its class and by derived class instances.&lt;/blockquote&gt;
+&lt;p&gt;[code language=”csharp”]
+abstract class Enchantment : IItem
+{
+  IItem _item = null;&lt;/p&gt;
+
+&lt;p&gt;protected int _Value = 0;&lt;/p&gt;
+
+&lt;p&gt;protected Enchantment(IItem baseItem)
+  {
+    _item = baseItem;
+  }&lt;/p&gt;
+
+&lt;p&gt;public string GetName()
+  {
+    return (_item.GetName() +&quot; +1 &quot;);
+  }&lt;/p&gt;
+
+&lt;p&gt;public int GetValue()
+  {
+    return (_item.GetValue() + _Value);
+  }
+}&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Class that extends the Decorator can change the protected vales in parent to eventually change the return values.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Magic : Enchantment
+{
+  public Magic(IItem baseComponent): base(baseComponent)
+  {
+    this._Value = 30;
+  }
+}
+[/code]&lt;/p&gt;
+&lt;h2&gt;Client&lt;/h2&gt;
+&lt;p&gt;Last part of an application. Here the instance of an item is created and modified. In this example you can see how the values changed after adding decorator.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+    IItem newItem = new Sword();
+    Console.WriteLine(newItem.GetName() + &quot; Value: &quot; + newItem.GetValue().ToString());&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;newItem = new Magic(newItem);
+Console.WriteLine(newItem.GetName() + &amp;amp;quot; Value: &amp;amp;quot; + newItem.GetValue().ToString());
+
+Console.ReadLine();   } } [/code]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;To conclude, Decorator can attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to sub-classing for extending functionality. I hope that this was understandable and it will help you with your projects. This was probably the last design pattern to cover on my blog, last in this month at least. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Jun 2016 22:38:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-decorator-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-decorator-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>decorator</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>example</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>structural</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Prototype Design Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/R3ZigGwa&quot;&gt;Link to source code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the last creational pattern in this series. And it’s used to create clones of objects without using references. C# is giving us helpful method MemberwiseClone() that is doing all cloning in the background. Later in the article I’ll cover the difference between Shadow and Deep Cloning.&lt;/p&gt;
+&lt;blockquote&gt;The MemberwiseClone method creates a shallow copy by creating a new object, and then copying the nonstatic fields of the current object to the new object. If a field is a value type, a bit-by-bit copy of the field is performed. If a field is a reference type, the reference is copied but the referred object is not; therefore, the original object and its clone refer to the same object.&lt;/blockquote&gt;
+&lt;p&gt;In my example I’m creating copy of the Enemy object that will keep the same ID as the base object.&lt;/p&gt;
+&lt;h3&gt;UML diagram&lt;/h3&gt;
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3591&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l10.png&quot; alt=&quot;l10&quot; width=&quot;490&quot; height=&quot;433&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Prototype&lt;/h2&gt;
+&lt;p&gt;First thing to do is the interface that will be implemented by concrete class. This is an interface which is used for the types of object that can be cloned itself.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;public abstract class AbstractEnemy
+{
+  int _id;&lt;/p&gt;
+
+&lt;p&gt;public int Id
+  {
+    get { return _id; }
+    set { _id = value; }
+  }
+  public abstract AbstractEnemy Clone();
+}&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+
+&lt;p&gt;This time implementation will be very simple thank to the MemberwiseClone() method.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Enemy : AbstractEnemy
+{
+  public override AbstractEnemy Clone()
+  {
+      Console.WriteLine(&quot;cloning enemy…&quot;);
+      return this.MemberwiseClone() as AbstractEnemy;
+  }
+}
+[/code]&lt;/p&gt;
+
+&lt;p&gt;One last thing to create is the Client Class that will create instance of an enemy and perform the cloning procedure.&lt;/p&gt;
+&lt;h2&gt;Client&lt;/h2&gt;
+&lt;p&gt;[code language=”csharp”]
+static void Main(string[] args)
+{
+   Enemy enemy = new Enemy();
+   enemy.Id = 1;&lt;/p&gt;
+
+&lt;p&gt;Console.WriteLine(&quot;Enemy Copy ID: &quot; + enemy.Id.ToString());&lt;/p&gt;
+
+&lt;p&gt;Enemy clonedEnemy = enemy.Clone() as Enemy;&lt;/p&gt;
+
+&lt;p&gt;Console.WriteLine(&quot;Enemy Copy ID: &quot; + clonedEnemy.Id.ToString());
+ }
+ }[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3&gt;Difference between Shadow and Deep Cloning&lt;/h3&gt;
+&lt;p&gt;The problem with the memberwise copy is that it creates a shallow copy of the object i.e. if the object contains any reference types then only the address of that reference type will be copied from source to target and both the versions will keep pointing to the same object. Changing properties of inner-class of one object will change them for other class as well.&lt;span style=&quot;font-family:&#39;Segoe UI&#39;;font-size:small;&quot;&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;
+&lt;blockquote&gt;A shallow copy copies all reference types or value types, but it does not copy the objects that the references refer to. The references in the new object point to the same objects that the references in the original object points to.&lt;/blockquote&gt;
+&lt;/li&gt;
+	&lt;li&gt;
+&lt;blockquote&gt; Deep copy of an object copies the elements and everything directly or indirectly referenced by the elements.&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Solution to this problem is to create  new Copy() method that will involve copying the inner class properties to new object. or to include copy() method to all object sub classes, just as it was implemented in previous example.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;public override AbstractEnemy Clone()
+ {
+    Enemy cloned = this.MemberwiseClone() as Enemy;
+    cloned.Equipment = new Equipment();
+    cloned.Equipment.Armor = this.Equipment.Armor;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; return cloned as AbstractEnemy;  }[/code]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To conclude, this pattern specifies the kind of objects to create using a prototypical instance, and create new objects by copying this prototype. I hope you learned something new. In next series of articles I’ll start moving into low level languages. Stay Awesome!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 29 Jun 2016 22:58:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-prototype-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-prototype-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>creational</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>IndieDevArt</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>prototype</category>
+        
+        <category>simple</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Abstract Factory Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/StPLETej&quot;&gt;Link To source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In previous post i introduced you to the concept of &lt;a href=&quot;https://indiedevart.wordpress.com/2016/06/23/c-factory-pattern/&quot;&gt;Factory Method&lt;/a&gt;. Abstract factory is very similar, but this time we will encapsulate all classes, by cremating interfaces for  Product and Factory. This pattern is also called as Factory of factories, because this patterns acts a superFactory which creates other factories. Abstract factory pattern in useful when the client needs to create objects which are somehow related, without specifying the concrete class.  With this pattern objects can interact with each other through common interfaces.&lt;/p&gt;
+
+&lt;p&gt;As usual I am using example from game development. In my example I’ll create Abstract Factory that will spawn enemies and give them specific weapon and armor.&lt;/p&gt;
+&lt;h3&gt;UML diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3475&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l9.png&quot; alt=&quot;l9&quot; width=&quot;987&quot; height=&quot;605&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h2&gt;Factory&lt;/h2&gt;
+&lt;p&gt;First thing to crate is the interface for Factory, that will be used to specify the equipment of each enemy.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;interface IEnemyFactory
+    {
+       IWeapon GetWeapon();
+       IArmor GetArmor();
+    }&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+
+&lt;p&gt;Concrete classes will be named as the type of enemy that will be created. In my Example i have two enemies Mage and Warrior.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Mage : IEnemyFactory
+{
+    public IWeapon GetWeapon()
+    {
+        return new Wand();
+    }&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public IArmor GetArmor()
+{
+    return new Cloak();
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;class Warrior : IEnemyFactory
+{
+    public IWeapon GetWeapon()
+    {
+        return new Sword();
+    }&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public IArmor GetArmor()
+{
+    return new BodyArmor();
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;h2&gt;Product&lt;/h2&gt;
+&lt;p&gt;In next step we will create interface for items that will be given to the enemies. Both types share the same types of equipment, weapon and armor.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;interface IWeapon
+ {
+     string Item();
+ }
+interface IArmor
+ {
+     string Item();
+ }&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+
+&lt;p&gt;In Concrete classes methods will return string values that will be printed to the console.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Sword : IWeapon
+ {
+     public string Item()
+     {
+         return &quot;Iron Sword&quot;;
+     }
+ }&lt;/p&gt;
+
+&lt;p&gt;class Wand : IWeapon
+ {
+     public string Item()
+     {
+          return &quot;Magic Wand&quot;;
+     }
+ }
+ class BodyArmor : IArmor
+ {
+      public string Item()
+      {
+          return &quot;Iron Body Armor&quot;;
+      }
+ }&lt;/p&gt;
+
+&lt;p&gt;class Cloak : IArmor
+ {
+     public string Item()
+     {
+          return &quot;Magic Cloak&quot;;
+     }
+ }&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;h2&gt;Client&lt;/h2&gt;
+&lt;p&gt;Client is the last part is to create. Here we will create instance of the factory and spawn our enemies.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Client
+{&lt;/p&gt;
+
+&lt;p&gt;IEnemyFactory factory=null;&lt;/p&gt;
+
+&lt;p&gt;//SpawnEnemy method will decide what type of enemy will be created&lt;/p&gt;
+
+&lt;p&gt;//Based on string input&lt;/p&gt;
+
+&lt;p&gt;public void SpawnEnemy(string enemy)
+ {
+   if (enemy == &quot;Warrior&quot;)
+   {
+     factory = new Warrior();
+     Console.WriteLine(&quot;New Warior equipment:&quot;);
+     Console.WriteLine(factory.GetWeapon().Item());
+     Console.WriteLine(factory.GetArmor().Item());
+     Console.WriteLine(&amp;amp;quot;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;&amp;amp;quot;);
+   }
+   else if (enemy == &quot;Mage&quot;)
+   {
+     factory = new Mage();
+     Console.WriteLine(&quot;New Mage equipment: &quot;);
+     Console.WriteLine(factory.GetWeapon().Item());
+     Console.WriteLine(factory.GetArmor().Item());
+     Console.WriteLine(&quot;&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&quot;);
+   }
+   else
+   {
+      Console.WriteLine(&quot;Wrong type&quot;);
+   }
+ }&lt;/p&gt;
+
+&lt;p&gt;//Main method
+ static void Main(string[] args)
+ {
+     Client client = new Client();
+     client.SpawnEnemy(&quot;Mage&quot;);
+     client.SpawnEnemy(&quot;Warrior&quot;);
+     Console.Read();
+ }
+}&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+
+&lt;p&gt;To conclude, Abstract Factory  provides an interface for creating families of related or dependent objects without specifying their concrete classes. This pattern is very useful but in large projects it may increase the complexity of the code. I hope you learned something new today. In next article You will learn how to implement another pattern. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Tue, 28 Jun 2016 22:59:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-abstract-factory-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-abstract-factory-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>abstract</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>creational</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>factory</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Command Design Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/hY1QsCud&quot;&gt;Link to Source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Command pattern allows you to store list of code that is executed many times or at a later time. It also gives you easy way to implement Undo() that can just have opposite effect or undo multiple command, if commands are stored in list. This pattern is supports encapsulation, which is always a good thing. It may look complicated, it involves multiple classes:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; Receiver -&lt;/strong&gt; that performs the Action associated with the request.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Invoker  -&lt;/strong&gt;that&lt;strong&gt; &lt;/strong&gt;asks the command to carry out the request&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Command&lt;/strong&gt; -this is an interface which specifies the Execute and/or Undo operation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Client&lt;/strong&gt; - creates instance of an invoker, command and receiver and connects them.&lt;/p&gt;
+
+&lt;p&gt;As usual I’ll be using example related to video games. In my example I created simulation where Enemy can enter the field on the battlefield that can Heal him or it can add a Buff. I have two types of enemies Goblin and dragon, just to demonstrate the example of multiple receivers. When enemy exits the field the opposite action is triggered.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3&gt;UML Diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3320&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l7.png&quot; alt=&quot;l7&quot; width=&quot;995&quot; height=&quot;617&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Receiver&lt;/h2&gt;
+&lt;p&gt;Lets start by creating interface for Enemies. Every enemy that implements this interface can either take damage, heal, and Turn Buff OFF and ON.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;interface IEnemy
+{
+  string Damage();
+  string Heal();
+  string BuffON();
+  string BuffOFF();
+}[/code]&lt;/p&gt;
+
+&lt;p&gt;Each method will return a string with massage about current status.&lt;/p&gt;
+
+&lt;p&gt;Here is implementation of the interface in one of the Enemy Class. Second One is very similar and you can find it in source code.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Goblin : IEnemy
+{
+  public string BuffOFF()
+  {
+    return &quot;Goblin enters the field-Buff is ON&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public string BuffON()
+  {
+    return &quot;Goblin exits the field-Buff is OFF&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public string Damage()
+  {
+    return &quot;Goblin exits the field- takes damage&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public string Heal()
+  {
+     return &quot;Goblin enters the field- heals&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;h2&gt;Command&lt;/h2&gt;
+&lt;p&gt;This interface will specify how retriever will respond to execute()and undo() commands.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+interface ICommand
+{
+  void Execute();
+  void UnDo();
+} [/code]&lt;/p&gt;
+
+&lt;p&gt;implementation of this interface requires a instance of an IEnemy receiver, in class constructor we pass the receiver that will be manipulated by the command. Again I’m showing here just one of two Classes, because both are identical.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Heal : ICommand
+{
+  IEnemy _receiver;
+  // Constructor
+  public Heal(IEnemy receiver)
+  {
+    _receiver = receiver;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void Execute()
+  {
+    Console.WriteLine(_receiver.Heal());
+  }
+  public void UnDo()
+  {
+    Console.WriteLine(_receiver.Damage());
+  }
+}
+[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h2&gt;Invoker&lt;/h2&gt;
+&lt;p&gt;In my example i’m simulating situation when enemy enters the field on the map, that triggers the commands. In the invoker we pass instance of command that we want to execute.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;class Field
+{
+  private ICommand _command;&lt;/p&gt;
+
+&lt;p&gt;public void SetCommand(ICommand command)
+  {
+    this._command = command;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void EnterField()
+  {
+  _command.Execute();
+  }
+  public void ExitField()
+  {
+  _command.UnDo();
+  }
+}&lt;/p&gt;
+
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;h2&gt;Client&lt;/h2&gt;
+&lt;p&gt;This is the last part of the program that connect everything together. In this specific example I chose the situation when Enemy Goblin Enters the Field, what trigger the Heal command. After leaving the field Goblin Takes Damage.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;static void Main()
+{
+  // Create receiver, command, and invoker
+  IEnemy receiver = new Goblin();
+  ICommand command = new Heal(receiver);
+  Field invoker = new Field();&lt;/p&gt;
+
+&lt;p&gt;// Set and execute command
+  invoker.SetCommand(command);
+  invoker.EnterField();
+  invoker.ExitField();&lt;/p&gt;
+
+&lt;p&gt;Console.ReadKey();
+}[/code]&lt;/p&gt;
+
+&lt;p&gt;This was just a simple demonstration of the pattern, one way of extending the functionality of it is to store command in the generic list, this way we can undo multiple commands or execute command already executed in the past. I hope you like will find it useful. In my next article I’ll cover on of the last design patters. Stay Awesome!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 27 Jun 2016 22:40:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-command-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-command-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>behavioral</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>Command</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Iterator Design Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/5Egf0puT&quot;&gt;Link To source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This article will demonstrate the idea behind the Iteration pattern and simple implementation of it. The idea of the iterator pattern is to take the responsibility of accessing and passing trough the objects of the collection and put it in the iterator object. In C# Iterator pattern can be implemented simply using &lt;a href=&quot;https://indiedevart.wordpress.com/2016/06/04/c-ienumerable-interface/&quot;&gt;IEnumerable&lt;/a&gt; interface. Implementation of IEnumerable interface allows you to syntax sugar like foreach loop. This leads to the topic of &lt;a href=&quot;https://indiedevart.wordpress.com/2016/05/20/collections/&quot;&gt;collections&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this post i’ll cover in more depth how Iterator is implemented by compiler. The iterator object will maintain the state of the iteration, keeping track of the current item and having a way of identifying what elements are next to be iterated. The abstraction provided by the iterator pattern allows you to modify the collection implementation without making any changes outside of collection.&lt;/p&gt;
+
+&lt;p&gt;This time you will see generic example of implementation, this is because i want to focus on the pattern functionality instead of  using techniques you may not know.&lt;/p&gt;
+&lt;h3&gt;UML diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3228&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l6.png&quot; alt=&quot;l6&quot; width=&quot;658&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Let’s start by creating interface for IIterator. Iterator Interface defines an interface for accessing and traversing elements.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+interface IIterator
+{
+  int FirstItem { get; }
+  int NextItem { get; }
+  int CurrentItem { get; }
+  bool IsDone { get; }
+}
+[/code]&lt;/p&gt;
+
+&lt;p&gt;This will simulate looping through the objects of collection.&lt;/p&gt;
+
+&lt;p&gt;Implementation of this interface will make the iteration process clearer.  Implementation of this patter can be more difficult to understand because each Class is referring to the next one. Iterator need to have a reference to the IAggregate to create instance of it in the constructor, and use it later for returning its values.&lt;/p&gt;
+
+&lt;p&gt;Return value is set to int in Aggregate for this example.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Iterator : IIterator
+{
+  IAggregate aggregate = null;&lt;/p&gt;
+
+&lt;p&gt;//We need an index to track the iteration process
+  int currentIndex = 0;&lt;/p&gt;
+
+&lt;p&gt;public Iterator(IAggregate newAggregate)
+  {
+    aggregate = newAggregate;
+  }
+  //Returns item with index 0
+  public int FirstItem
+  {
+    get
+    {
+      currentIndex = 0;
+      return aggregate[currentIndex];
+    }
+  }&lt;/p&gt;
+
+&lt;p&gt;//Returns next item
+  public int NextItem
+  {
+   get
+   {
+     currentIndex += 1;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; if (IsDone == false)
+ {
+   return aggregate[currentIndex];
+ }
+ else
+ {
+   return -1;
+ }
+}   }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;public int CurrentItem
+  {
+    get
+    {
+       return aggregate[currentIndex];
+    }
+  }
+//This method will give us feedabck when iteration ended
+  public bool IsDone
+  {
+     get
+     {
+       if (currentIndex &amp;lt; aggregate.Count)
+       {
+          return false;
+       }
+       return true;
+     }
+   }
+ }
+[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Next interface to create is IAggregate.  One of the methods will return IIterator interface object.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+ interface IAggregate
+ {
+   IIterator GetIterator();
+   //This will handle manipulation of objects in the array
+   int this[int itemIndex] { set; get; }
+   int Count { get; }
+ }
+[/code]
+Implementation of this interface in Aggregate Class will be used as a place to create a list of an object that we will iterate through.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Aggregate : IAggregate
+{
+  //Here is why Iterator methods returns integers;
+  List&amp;lt;int&amp;gt; values = null;&lt;/p&gt;
+
+&lt;p&gt;public Aggregate()
+  {
+    values = new List&amp;lt;int&amp;gt;();
+  }&lt;/p&gt;
+
+&lt;p&gt;public IIterator GetIterator()
+  {
+    //Iterator constructor takes IAggregate as parameter
+    return new Iterator(this);
+  }&lt;/p&gt;
+
+&lt;p&gt;public int this[int itemIndex]
+  {
+    get
+    {
+      if (itemIndex &amp;lt; values.Count)
+       {
+           return values[itemIndex];
+       }
+      else
+      {
+        return -1;
+      }
+    }
+    set
+    {
+        values.Add(value);
+    }
+   }&lt;/p&gt;
+
+&lt;p&gt;public int Count
+   {
+     get
+     {
+       return values.Count;
+     }
+   }
+ }
+[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Last step is to create a Client that will create instance of Aggregate Class and Use Iterator to loop throug collection items.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+    Aggregate aggr = new Aggregate();&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aggr[0] = 7;
+aggr[1] = 8;
+aggr[2] = 9;
+aggr[3] = 89;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;IIterator iter = aggr.GetIterator();
+  //Loops until isDone==false
+    for (int i = iter.FirstItem; iter.IsDone == false; i = iter.NextItem)
+    {
+       Console.WriteLine(i.ToString());
+    }
+  Console.ReadLine();
+  }
+}
+[/code]
+To conclude, Iteration pattern provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation. In C# this can be handled just by implementing IEnumerable interface. I hope you learned something new today. In Next article I’ll cover one last design patterns. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt;PS: Thanks for all Up votes On &lt;a href=&quot;https://www.reddit.com/&quot;&gt;Reddit.com&lt;/a&gt;! I can’t reply to  comments, because of shadow-ban :D&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 Jun 2016 22:55:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-iterator-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-iterator-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>behavioral</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>example</category>
+        
+        <category>Iterator</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Composite Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/dSAyApP2&quot;&gt;Link to source code for this post&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Composite pattern is used to create a tree structure, where every item of the structure implements the same interface. Therefore methods declared in interface can performed on every item in the structure. This pattern classifies each element in the tree as a composite or a leaf. A composite means that there can be other elements below it, whereas a leaf cannot have any elements below it.&lt;/p&gt;
+
+&lt;p&gt;To demonstrate the implementation of this pattern I’ll use an example of inventory where player can have Items( leafs ) and Backpack ( composite ). Player will be able to loop through all items in inventory and return the name of the items.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3&gt;UML diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3198&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l5.png&quot; alt=&quot;l5&quot; width=&quot;528&quot; height=&quot;408&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;First thing to create is the Component interface that will be inherited by all items in the structure.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public interface IInventory
+{
+  string Name { get; set; }
+  void PrintName();
+}
+[/code]
+It acts as the base class for all the objects within the hierarchy. I’m creating name property for all items. you can find more about &lt;a href=&quot;https://indiedevart.wordpress.com/2016/06/11/c-properties/&quot;&gt;properties &lt;/a&gt;on my recent post about it.&lt;/p&gt;
+
+&lt;p&gt;Next thing is the implementation of the interface in Backpack Class that will be used to store Items or other Backpacks. To do this You need method for adding and removing items. Objects will be stored in &lt;a href=&quot;https://indiedevart.wordpress.com/2016/05/12/introduction-to-generics/&quot;&gt;generic List.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]&lt;/p&gt;
+
+&lt;p&gt;public class Backpack : IInventory, IEnumerable&amp;lt;IInventory&amp;gt;
+{
+  private List&amp;lt;IInventory&amp;gt; _subordinates = new List&amp;lt;IInventory&amp;gt;();&lt;/p&gt;
+
+&lt;p&gt;public string Name { get; set; }&lt;/p&gt;
+
+&lt;p&gt;public void AddSubordinate(IInventory subordinate)
+  {
+    _subordinates.Add(subordinate);
+  }&lt;/p&gt;
+
+&lt;p&gt;public void RemoveSubordinate(IInventory subordinate)
+  {
+    _subordinates.Remove(subordinate);
+  }&lt;/p&gt;
+
+&lt;p&gt;public IInventory GetSubordinate(int index)
+  {
+    return _subordinates[index];
+  }&lt;/p&gt;
+
+&lt;p&gt;public void PrintName()
+  {
+    Console.WriteLine(Name);
+  }
+  public IEnumerator&amp;lt;IInventory&amp;gt; GetEnumerator()
+  {
+    foreach (IInventory subordinate in _subordinates)
+    {
+      yield return subordinate;
+    }
+  }&lt;/p&gt;
+
+&lt;p&gt;IEnumerator IEnumerable.GetEnumerator()
+  {
+    return GetEnumerator();
+  }
+}
+[/code]
+Next thing is  to create an object Class, this class will be used to represent single item in inventory.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”] public class Item : IInventory
+{
+  public string Name { get; set; }&lt;/p&gt;
+
+&lt;p&gt;public void PrintName()
+  {
+    Console.WriteLine(Name);
+  }
+}[/code]
+Last thing to do is the Client site that will create the structure based on the created Interface and Classes.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”] class Program
+{
+  static void Main(string[] args)
+  {
+    Backpack inventory = new Backpack { Name = &quot;Inventory&quot; };
+    Backpack backpack = new Backpack { Name = &quot;Backpack&quot; };&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;inventory.AddSubordinate(backpack);
+inventory.AddSubordinate(new Item { Name = &amp;amp;quot;Sword&amp;amp;quot;});
+inventory.AddSubordinate(new Item { Name = &amp;amp;quot;Armor&amp;amp;quot; });
+
+backpack.AddSubordinate(new Item { Name = &amp;amp;quot;Shield&amp;amp;quot; });
+
+Console.WriteLine(&amp;amp;quot;List of items in inventory&amp;amp;quot;);
+
+  foreach (IInventory element in inventory)
+  {
+     element.PrintName();
+  }
+Console.ReadKey();    }  }[/code] In this example Backpack class is used to create rot object for the tree. Where new backpack and few new items are added. Thanks to implementation of IEnumerable interface we can loop through items in the backpack class.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To conclude, Composite pattern compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly. I hope you find this tutorial useful. If you have any questions feel free to ask in comments. In next part I’ll cover yet another design pattern. Stay Awesome!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 25 Jun 2016 22:58:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-composite-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-composite-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>Composite</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>structural</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Proxy Design Pattern</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://pastebin.com/ZeCkrGDd&quot;&gt;Link To source Code for this article&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This pattern is used to restrict access to Real Subject Class by creating Proxy gate, that implement the same interface as Real Subject and extends the interface methods to perform additional operations before executing method in Real Subject. Proxy Design Pattern acts as main point of contact for the resources that should not be available directly to the client code.&lt;/p&gt;
+
+&lt;p&gt;To demonstrate the implementation of this pattern I’ll use an example of in game equipment where access to the items is restricted by Proxy.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3&gt;UML diagram:&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignleft size-full wp-image-3117&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l4.png&quot; alt=&quot;l4&quot; width=&quot;608&quot; height=&quot;393&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Let’s begin by creating Interface that will be implemented by both Classes.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]public interface IEquipment
+{
+  string GetData();
+}[/code]
+Nothing fancy, just to demonstrate the idea behind the pattern. Subject Interface provides and interface that both actual class and proxy class will implement. this way the proxy can easily be used as substitute for the real subject.&lt;/p&gt;
+
+&lt;p&gt;Next step is to create Equipment Class that is our Real Subject&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”] public class Equipment : IEquipment
+{
+  string itemName;
+  public int intemId;
+  //Constructor
+  public Equipment()
+  {
+    itemName = &quot;Iron Sword&quot;;
+    intemId = 4;
+  }&lt;/p&gt;
+
+&lt;p&gt;public string GetData()
+  {
+    return (itemName + &quot; ID: &quot;+ intemId.ToString());
+  }
+}[/code]
+This class also contains one item with name and ID, which is represented just by fields, in more real example it would be list of Items. We assign new values when instance of this class is created.&lt;/p&gt;
+
+&lt;p&gt;Now we need to create Proxy that will have a reference to the Real Subject  and will modify the GetData() method to restrict the access.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public class EquipmentProxy : IEquipment
+{
+  Equipment client = new Equipment();&lt;/p&gt;
+
+&lt;p&gt;public string GetData()
+  {
+     if (client.intemId == 4)
+         return client.GetData();&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; else
+     return &amp;amp;quot;Item is not in inventory&amp;amp;quot;;    }  }[/code] Id is hard typed and set to 4 just for the example. The application will use this class and this class will internally take care of talking to the RealSubject and get the data to the local application.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Last part of the application is Client site, where Instance of the proxy is created and GetData() method is called.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]class Program
+{
+  static void Main(string[] args)
+  {
+     EquipmentProxy proxy = new EquipmentProxy();
+     Console.WriteLine(&quot;Data from Proxy: &quot;+ proxy.GetData());&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Console.ReadKey();   } }[/code]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;To conclude, The proxy design pattern is used to provide a surrogate object, which references to other object. Proxy pattern involves a class, called proxy class, which represents functionality of another class. I hope you learned something new, in next article I’ll cover another design pattern. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 Jun 2016 22:02:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-proxy-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-proxy-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>proxy</category>
+        
+        <category>simple</category>
+        
+        <category>structural</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Factory Pattern</title>
+        <description>&lt;p&gt;This is one of the creational patterns. Factory is used to create an object from instance of another class.  In Factory pattern, we create object without exposing the creation logic. This helps to deal with large and more complex programs. In this pattern, an interface is used for creating an object, but let subclass decide which class to instantiate. Creation process is done in run time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;alignleft size-medium wp-image-3052&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/1245px-factory_1b-svg.png?w=300&quot; alt=&quot;1245px-factory_1b-svg&quot; width=&quot;300&quot; height=&quot;247&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ll use example from typical video game where Enemy object is created, and its type is based on random number. Object is created in run time.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3&gt;UML diagram:&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-3063&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l3.png&quot; alt=&quot;l3&quot; width=&quot;676&quot; height=&quot;333&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;First let’s create Interface that will be shared between all enemies that can be crated with Factory. This will be used by client.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public interface IFactory
+{
+  void Demage(int dmg);
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Now we need to create Classes that will inherit this interface. In my example this will be enemyType1 and 2.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public class EnemyType1 : IFactory
+{
+  int _health=100;
+  public void Demage(int dmg)
+  {
+     _health -= dmg;
+     Console.WriteLine(&quot;EnemyType1 health:&quot; + _health.ToString());
+  }
+}&lt;/p&gt;
+
+&lt;p&gt;public class EnemyType2 : IFactory
+{
+  int _health = 200;
+  public void Demage(int dmg)
+  {
+     _health -= dmg;
+     Console.WriteLine(&quot;EnemyType2 health:&quot; + _health.ToString());
+  }
+}[/code]
+Both classes also contains health count, just to make it more interesting.&lt;/p&gt;
+
+&lt;p&gt;Next we need to create the Interface for factory itself.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public abstract class EnemyFactory
+{
+  public abstract IFactory InstantiateEnemy(int type);
+}[/code]
+As a return type we use interface IFactory, this way we can return any object that inherits from it.&lt;/p&gt;
+
+&lt;p&gt;In The factory Class we override the method with switch statement that will return the objects based on the input number.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public class InstantiateEnemyFactory : EnemyFactory
+{
+  public override IFactory InstantiateEnemy(int type)
+  {
+     switch (type)
+     {
+        case 1:
+            return new EnemyType1();
+        case 2:
+           return new EnemyType2();
+         default:
+           throw new ApplicationException(string.Format(&quot;Wrong number&quot;));
+     }
+  }
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Last step is to create client that will use the factory class.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+  //random number
+  int type = new Random().Next(1, 1000)% 2 + 1;
+  //Instance of the class
+  EnemyFactory factory = new InstantiateEnemyFactory();&lt;/p&gt;
+
+&lt;p&gt;IFactory newEnemy= factory.InstantiateEnemy(type);
+  newEnemy.Demage(20);&lt;/p&gt;
+
+&lt;p&gt;type = new Random().Next(1, 2000)%2 + 1;&lt;/p&gt;
+
+&lt;p&gt;IFactory newEnemy2 = factory.InstantiateEnemy(type);
+  newEnemy2.Demage(20);&lt;/p&gt;
+
+&lt;p&gt;Console.ReadKey();&lt;/p&gt;
+
+&lt;p&gt;}
+}[/code]
+Numbers don’t have to be random. I’m using random numbers to demonstrate the example. I real world we would rather create a list of enemies rather than choosing name for each of them.&lt;/p&gt;
+
+&lt;p&gt;This patters is very simple and effective. This makes it commonly used across all languages. To conclude, Factory defines an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. I hope you found it useful and you will implement this pattern to your next project. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://pastebin.com/zUxSxdLg&quot;&gt;Link to full source code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Thu, 23 Jun 2016 22:55:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-factory-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-factory-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>design</category>
+        
+        <category>easy</category>
+        
+        <category>factory</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>structural</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Observer Design Pattern</title>
+        <description>&lt;p&gt;This is very popular behavioural pattern. As the name suggests, the Observer Pattern is a pattern where the important objects are “observed” or watched for changes. This pattern is useful when we want to pass message from one object(subject) to multiple objects(observers).  Observers are not related with each other, but every one of them needs to inherit from IObserver interface.&lt;/p&gt;
+
+&lt;p&gt;To demonstrate the implementation of the pattern I’ll use an example with Enemy Class sending message to Subscriber when health is changed. Message will be sent to UserInterface and DifferentUnit Classes.&lt;/p&gt;
+
+&lt;p&gt;UML diagram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;alignnone size-full wp-image-2976&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l2.png&quot; alt=&quot;l2&quot; width=&quot;830&quot; height=&quot;527&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;First we need to create IObserver Interface that will be used as a base for Concrete Classes.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public interface IObserver
+{
+  void Update();
+}[/code]
+Simple as that. Next we need to write implementation of this Interface in  Concrete Classes.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public class UserInteface : IObserver
+{
+  public void Update()
+  {
+     Console.WriteLine(&quot;Interface Updated&quot;);
+  }
+}
+public class DifferentUnit : IObserver
+{
+  public void Update()
+  {
+     Console.WriteLine(&quot;Relation Updated&quot;);
+  }
+}[/code]
+In this example we don’t need any extra parameters, just implementation of an Update() method.&lt;/p&gt;
+
+&lt;p&gt;Now lets move our attention to Subject site.  Subject interface need methods for subscribing and unsubsribing Observers. And method for Notifing the Listeners about the cahnge.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+interface IEnemy
+{
+  void Subscribe(IObserver observer);
+  void Unsubscribe(IObserver observer);
+  void Notify();
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;In Enemy class I’m using may techniques like &lt;a href=&quot;https://indiedevart.wordpress.com/2016/06/11/c-properties/&quot;&gt;Properties&lt;/a&gt;, &lt;a href=&quot;https://indiedevart.wordpress.com/2016/05/12/introduction-to-generics/&quot;&gt;Generic List&lt;/a&gt;, &lt;a href=&quot;https://indiedevart.wordpress.com/2016/05/25/lambda-expressions/&quot;&gt;Lambda Expressin&lt;/a&gt;, click on links if you want to learn more about them.&lt;/p&gt;
+
+&lt;p&gt;Enemy class inherits from IEnemy interface. It contains generic list of Observers, using interface as an object allows you to store objects of any class that inherits form IObserver interface. Notify() is called whenever health value is changing. Subscribe and Unsubscribe methods are using methods from List library&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+public class Enemy : IEnemy
+{
+  private List&amp;lt;IObserver&amp;gt; observers = new List&amp;lt;IObserver&amp;gt;();
+  private int _health=10;
+  public int Health
+  {
+    get { return _health; }
+    set
+    {
+      _health = value;
+      Notify();
+    }
+  }&lt;/p&gt;
+
+&lt;p&gt;public void Notify()
+  {
+     observers.ForEach(x =&amp;gt; x.Update());
+  }&lt;/p&gt;
+
+&lt;p&gt;public void Subscribe(IObserver observer)
+  {
+     observers.Add(observer);
+  }&lt;/p&gt;
+
+&lt;p&gt;public void Unsubscribe(IObserver observer)
+  {
+     observers.Remove(observer);
+  }
+}[/code]
+Last part of implementation contains Client Class that will be used to create instances of Enemy Class and to display the final output.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+  Enemy subject = new Enemy();&lt;/p&gt;
+
+&lt;p&gt;IObserver observer1 = new UserInteface();
+  subject.Subscribe(observer1);&lt;/p&gt;
+
+&lt;p&gt;subject.Subscribe(new DifferentUnit());
+  subject.Health++;
+  Console.WriteLine(&quot;——————–&quot;);
+  subject.Unsubscribe(observer1);
+  subject.Health–;
+  Console.ReadLine();
+  }
+}[/code]
+Here you can see that two Concrete Classes are added to the Observer List by calling subscription method. Changing health value causes Notify() method that prints the values to the console. Later I unsubscribe one item from Observer and I’m changing the value once again, this time by decrementing the health value.&lt;/p&gt;
+
+&lt;p&gt;To conclude, Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependants are notified and updated automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://pastebin.com/bkTxxWZm&quot;&gt;Link to source code for this pattern.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In Unity Engine this massaging system can be created with List of Events. You can find how to build messaging system in Unity in my article &lt;a href=&quot;https://indiedevart.wordpress.com/2016/06/07/unity-eventmanager/&quot;&gt;here.&lt;/a&gt; In my next article You will learn how to implement another exciting design patter. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Wed, 22 Jun 2016 20:24:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-observer-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-observer-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>behavioral</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>example</category>
+        
+        <category>observer</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>tutorial</category>
+        
+        <category>Uncategorized</category>
+        
+      </item>
+    
+      <item>
+        <title>C# Builder Design Pattern</title>
+        <description>&lt;p&gt;In this article you will learn how to implement builder design pattern. This is one of structural patterns. You can use it when you need to have control over how complex objects would be created at runtime. This pattern gives you step by step approach on the object creation process. This is useful if you want to reuse the same creation process to build different representations. I’ll demonstrate the implementation of the pattern on simplified  real word example. And I’ll explain it step by step.&lt;/p&gt;
+
+&lt;p&gt;To show you the pattern I created the system of creating two types of enemies, each process of creation takes multiple steps, that’s good opportunity for using builder.&lt;/p&gt;
+&lt;h3&gt;UML diagram:&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot; size-full wp-image-2949 aligncenter&quot; src=&quot;https://indiedevart.files.wordpress.com/2016/06/l1.png&quot; alt=&quot;l1&quot; width=&quot;870&quot; height=&quot;395&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;ol class=&quot;orderlist&quot;&gt;
+	&lt;li&gt;&lt;b&gt;IEnemy&lt;/b&gt; - Builder interface&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;EnemyTypeA &lt;/b&gt;and&lt;b&gt; EnemyTypeB&lt;/b&gt;- Concrete Builder&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;Enemy&lt;/b&gt;- Product&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;EnemyCreator &lt;/b&gt;- Director&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;So first let’s create an enemy Class, we will instantiate objects of this class in Concrete Builders.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Enemy
+{
+  public string model;
+  public string behaviour;
+  public string components;
+}[/code]
+Here we have three public variables just to  demonstrate the example.&lt;/p&gt;
+
+&lt;p&gt;Next we need Builder interface that will contains all the method that will be implemented by Enemies Classes. And we have Get Enemy method that will return the Enemy Class instance after competing the construction process.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+interface IEnemy
+{
+  void SelectModel();
+  void SelectBehaviour();
+  void AddComponents();&lt;/p&gt;
+
+&lt;p&gt;Enemy GetEnemy();
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Next step is to create Classes based on the interface. Each class will have unique implementation of the interface methods.  In order to get access to Enemy Class properties we need to create instance of this Class.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class EnemyTypeA : IEnemy
+{
+  Enemy enemy = new Enemy();
+  public void AddComponents()
+  {
+    enemy.components=&quot;Components Added&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void SelectBehaviour()
+  {
+    enemy.behaviour= &quot;Behaviour Type A Selected&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void SelectModel()
+  {
+     enemy.model = &quot;Body Type A Selected&quot;;
+  }
+  public Enemy GetEnemy()
+  {
+     return enemy;
+  }
+}
+//EnemyTypeB
+class EnemyTypeB : IEnemy
+{
+  Enemy enemy = new Enemy();
+  public void AddComponents()
+  {
+     enemy.components = &quot;Components Added&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void SelectBehaviour()
+  {
+     enemy.behaviour = &quot;Behaviour Type B Selected&quot;;
+  }&lt;/p&gt;
+
+&lt;p&gt;public void SelectModel()
+  {
+     enemy.model = &quot;Body Type B Selected&quot;;
+  }
+  public Enemy GetEnemy()
+  {
+     return enemy;
+  }
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Now it’s time for creating Director that will contain the logic behind creating new enemy. In Class constructor we pass IEnemy interface, this way we can pass any Class that inhirates form this interface.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class EnemyCreator
+{
+  private readonly IEnemy enemyBuilder;&lt;/p&gt;
+
+&lt;p&gt;public EnemyCreator( IEnemy enemyType)
+  {
+     enemyBuilder = enemyType;
+  }
+  public Enemy ConstructEnemy()
+  {
+    enemyBuilder.SelectBehaviour();
+    enemyBuilder.SelectModel();
+    enemyBuilder.AddComponents();&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;return enemyBuilder.GetEnemy();   } }[/code] Construct Enemy method return instance of Enemy Class with new properties.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Last thing to complete the implementation is to create Client Class that will  create instances of each enemy type.&lt;/p&gt;
+
+&lt;p&gt;[code language=”csharp”]
+class Program
+{
+  static void Main(string[] args)
+  {
+  var enemyCreator = new EnemyCreator(new EnemyTypeA());
+  var enemy = enemyCreator.ConstructEnemy();
+  enemy.ShowInfo();
+  Console.WriteLine(&quot;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;_____&quot;);
+  enemyCreator = new EnemyCreator(new EnemyTypeB());
+  enemy = enemyCreator.ConstructEnemy();
+  enemy.ShowInfo();
+  Console.ReadLine();
+  }
+}[/code]&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;To conclude, Builder pattern Separates the construction of a complex object from its representation so that the same construction process can create different representations. I hope you found it useful and you will implement this pattern to you programs. I next article I’ll cover another exciting design patter. Stay Awesome!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://pastebin.com/gsiQ30wd&quot;&gt;Link To Full Source Code &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Tue, 21 Jun 2016 22:59:00 +0100</pubDate>
+        <link>https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-builder-design-pattern/</link>
+        <guid isPermaLink="true">https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-builder-design-pattern/</guid>
+        
+        
+        <category>.NET</category>
+        
+        <category>Builder</category>
+        
+        <category>C#</category>
+        
+        <category>C# .NET</category>
+        
+        <category>coding</category>
+        
+        <category>creational</category>
+        
+        <category>design</category>
+        
+        <category>Design Patterns</category>
+        
+        <category>easy</category>
+        
+        <category>example</category>
+        
+        <category>patterns</category>
+        
+        <category>programing</category>
+        
+        <category>simple</category>
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+  </channel>
+</rss>

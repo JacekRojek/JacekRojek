@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>C# Enumerations</title>
+  <meta name="description" content="Software development blog">
+  <meta name="author" content="Jacek Rojek">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:description" content="Software development blog">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JacekRojek">
+  <meta property="og:description" content="Software development blog">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/JacekRojek/images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/JacekRojek/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/JacekRojek/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/JacekRojek/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/JacekRojek/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/JacekRojek/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/JacekRojek/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/JacekRojek/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/JacekRojek/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/JacekRojek/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/JacekRojek/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/JacekRojek/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/JacekRojek/css/main.css">
+  <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-enumerations/">
+  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+  
+<header class="panel-cover" style="background-image: url(/JacekRojek/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/JacekRojek/" title="link to home of JacekRojek">
+          <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Software development blog</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/JRojek93" title="@JRojek93 on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/jacek.rojek.7" title="jacek.rojek.7 on Facebook" target="_blank">
+                  <i class="icon icon-social-facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/jacek-rojek-b7a396105" title="jacek-rojek-b7a396105 on LinkedIn" target="_blank">
+                  <i class="icon icon-social-linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/JacekRojek" title="JacekRojek on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:j.rojek19@gmail.com" title="Email j.rojek19@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/JacekRojek/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="12 Jun 2016" class="post-meta__date date">12 Jun 2016</time> &#8226; <span class="post-meta__tags">on </span>
+    </div>
+    <h1 class="post-title">C# Enumerations</h1>
+  </header>
+
+  <section class="post">
+    <p>In this Tutorial You will learn how to create Enumeration in C#. This is a syntax sugar that helps to store informations in short and meaningful way. It makes code more readable and secure the Fields from invalid inputs. An enumeration is a set of named integer constants. An enumerated type is declared using the <b>enum</b> keyword.</p>
+<h3>Enums</h3>
+<blockquote>Enums are strongly typed constants. They are essentially unique types that allow you to assign symbolic names to integral values. They are strongly typed, meaning that an enum of one type may not be implicitly assigned to an enum of another type even though the underlying value of their members are the same. Along the same lines, integral types and enums are not implicitly interchangable. All assignments between different enum types and integral types require an explicit cast.</blockquote>
+<p> </p>
+
+<p>enum Syntax:</p>
+
+<p>[code language=”csharp”]</p>
+
+<p>enum &lt;enum_name&gt; { enumeration list };</p>
+
+<p>[/code]</p>
+<p class="prettyprint notranslate prettyprinted"><span class="pun"> </span></p>
+<p>This can be written i one line as i will show you later.</p>
+
+<p>Lats take a look at example i came up with. In this Program i have an Enemy class that contains type of enemy and behaviour. For both of the properties i create a enum that list all possible options. This way I’m sure that constructor will pass only the type i listed in Class declaration.</p>
+
+<p>[code language=”csharp”]
+ enum Behaviour { Agressive, Neutral, Friendly }
+ enum Type { Skeleton, Vampire, Ghoul }
+ class Program
+ {
+   static void Main(string[] args)
+   {
+     Enemy[] enemies= new Enemy[3];
+     enemies[0] = new Enemy(Type.Ghoul, Behaviour.Agressive);
+     enemies[1] = new Enemy(Type.Skeleton, Behaviour.Neutral);
+     enemies[2] = new Enemy(Type.Vampire, Behaviour.Friendly);</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> foreach (Enemy e in enemies)
+ {
+    e.Print();
+ }
+ Console.ReadLine();    }  } class Enemy  {    Type type;    Behaviour behaviour; 
+</code></pre>
+</div>
+
+<p>public Enemy(Type _type,Behaviour _behaviour)
+   {
+     this.type = _type;
+     this.behaviour = _behaviour;
+   }
+public void Print()
+   {
+      Console.WriteLine(behaviour.ToString()+" "+ type.ToString());
+   }</p>
+
+<p>}
+[/code]</p>
+
+<p>Enums are using integer values as a default value. We can convert the Selected type to an integer. We can overwrite the Print method like this.</p>
+
+<p>[code language=”csharp”]</p>
+
+<p>public void Print()
+{
+Console.WriteLine((int)behaviour+" "+ (int)type);
+}
+[/code]</p>
+
+<p>The output will be</p>
+<pre>0   2
+
+1   0
+
+2   1</pre>
+<p> </p>
+
+<p>Enums allows to assign values to the elements in the definition. Values of elements after the one that have assigned value will be incremented by one</p>
+
+<p>[code language=”csharp”]
+//Result values: 4,5,6
+enum Behaviour { Agressive=4, Neutral, Friendly }
+// Result, values 0,7,8
+enum Type { Skeleton, Vampire=7, Ghoul }
+[/code]</p>
+
+<p>You can change the variable type, from default integer to almost  anything else.</p>
+
+<p>[code language=”csharp”]
+enum Behaviour : Byte { Agressive=12, Neutral, Friendly }
+[/code]</p>
+
+<p>The approved types for an enum are <strong>byte</strong>, <a href="https://msdn.microsoft.com/en-gb/library/d86he86x.aspx">sbyte</a>, <a href="https://msdn.microsoft.com/en-gb/library/ybs77ex4.aspx">short</a>, <a href="https://msdn.microsoft.com/en-gb/library/cbf1574z.aspx">ushort</a>, <a href="https://msdn.microsoft.com/en-gb/library/5kzh1b5w.aspx">int</a>, <a href="https://msdn.microsoft.com/en-gb/library/x0sksh43.aspx">uint</a>, <a href="https://msdn.microsoft.com/en-gb/library/ctetwysk.aspx">long</a>, or <a href="https://msdn.microsoft.com/en-gb/library/t98873t4.aspx">ulong</a>.</p>
+
+<p> </p>
+
+<p>This post covered the most basic functionalities of enum keyword. I encourage you to implement some of the functions to your code, this can make it easier to read and faster to write. Stay Awesome!</p>
+
+<p> </p>
+
+<p> </p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2016 Jacek Rojek. All rights reserved.</span>
+</footer> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/JacekRojek/js/main.js"></script>
+
+    </div>
+  </body>
+</html>
