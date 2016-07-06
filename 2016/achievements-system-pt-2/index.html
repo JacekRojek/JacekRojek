@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/achievements-system-pt-2/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -198,109 +198,112 @@
 
 <p>We take all vales form JSON file and add 2 new properties State and Sprite, sprite is loaded from array of sprites. Sprites must be sliced first to store them in array.</p>
 
-<p>[code language=”csharp”]
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using LitJson;
-using System.IO;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">LitJson</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
 
-<p>public class Database_Achievements : MonoBehaviour
-{ 
-  private List&lt;Achievement&gt; databaseAchievements = new List&lt;Achievement&gt;();
-  private JsonData AchData;
-  // Use this for initialization
-  void Awake()
-  {
-     AchData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/Achievements.json"));</p>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Database_Achievements</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span> 
+  <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Achievement</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">databaseAchievements</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Achievement</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+  <span class="k">private</span> <span class="n">JsonData</span> <span class="n">AchData</span><span class="p">;</span>
+  <span class="c1">// Use this for initialization
+</span>  <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">AchData</span> <span class="p">=</span> <span class="n">JsonMapper</span><span class="p">.</span><span class="nf">ToObject</span><span class="p">(</span><span class="n">File</span><span class="p">.</span><span class="nf">ReadAllText</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">dataPath</span> <span class="p">+</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;/</span><span class="n">Achievements</span><span class="p">.</span><span class="n">json</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;));</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> ConstructItemDatabase();
- Debug.Log(databaseAchievements[1].ID);   }
+     <span class="nf">ConstructItemDatabase</span><span class="p">();</span>
+     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">databaseAchievements</span><span class="p">[</span><span class="m">1</span><span class="p">].</span><span class="n">ID</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">void</span> <span class="nf">ConstructItemDatabase</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">AchData</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+     <span class="p">{</span>
+<span class="n">databaseAchievements</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">Achievement</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">ID</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;],</span> <span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Title</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;].</span><span class="nf">ToString</span><span class="p">(),</span> <span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Description</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;].</span><span class="nf">ToString</span><span class="p">()));</span>
+     <span class="p">}</span>
+  <span class="p">}</span>
+<span class="k">public</span> <span class="n">Achievement</span> <span class="nf">FetchItembyID</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">databaseAchievements</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">databaseAchievements</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ID</span> <span class="p">==</span> <span class="n">id</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">databaseAchievements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+     <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+  <span class="p">}</span>
+ <span class="k">public</span> <span class="k">class</span> <span class="nc">Achievement</span>
+ <span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Title</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Describtion</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="n">Sprite</span> <span class="n">image</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">bool</span> <span class="n">active</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">ID</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">private</span> <span class="n">Sprite</span><span class="p">[]</span> <span class="n">sprites</span> <span class="p">=</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Resources</span><span class="p">.</span><span class="n">LoadAll</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Sprite</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Achievements</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+<span class="k">public</span> <span class="nf">Achievement</span><span class="p">(</span><span class="kt">int</span> <span class="n">newID</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="n">desc</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">Title</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">Describtion</span> <span class="p">=</span> <span class="n">desc</span><span class="p">;</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">active</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">sprites</span><span class="p">[</span><span class="n">newID</span><span class="p">];</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">ID</span> <span class="p">=</span> <span class="n">newID</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nf">Achievement</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="n">Title</span> <span class="p">=</span> <span class="n">name</span><span class="p">;</span>
+  <span class="p">}</span>
+
+ <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
-
-<p>void ConstructItemDatabase()
-  {
-     for (int i = 0; i &lt; AchData.Count; i++)
-     {
-databaseAchievements.Add(new Achievement((int)AchData[i]["ID"], AchData[i]["Title"].ToString(), AchData[i]["Description"].ToString()));
-     }
-  }
-public Achievement FetchItembyID(int id)
-  {
-    for (int i = 0; i &lt; databaseAchievements.Count; i++)
-    {
-      if (databaseAchievements[i].ID == id)
-          return databaseAchievements[i];
-    }
-     return null;
-  }
- public class Achievement
- {
-  public string Title { get; set; }
-  public string Describtion { get; set; }
-  public Sprite image { get; set; }
-  public bool active { get; set; }
-  public int ID { get; set; }
-  private Sprite[] sprites = UnityEngine.Resources.LoadAll&lt;Sprite&gt;("Achievements");
-public Achievement(int newID, string name, string desc)
-  {
-     this.Title = name;
-     this.Describtion = desc;
-     this.active = false;
-     this.image = sprites[newID];
-     this.ID = newID;
-  }
-Achievement(string name)
-  {
-      this.Title = name;
-  }</p>
-
-<p>}
-}
-[/code]</p>
 
 <p>We need a method for finding item in database, we will use FetchItembyID(int id) to find item by int ID number.</p>
 
 <p>We add new method to the AchievementPanel Class.</p>
 
-<p>[code language=”csharp”]
-void PassInformations(int ID)
-{
-  Database_Achievements.Achievement ach =database.FetchItembyID(ID);
-  Debug.Log(ach.ID);
-  panelAchievements.transform.GetChild(0).GetComponent&lt;Text&gt;().text = ach.Title;
-  panelAchievements.transform.GetChild(1).GetComponent&lt;Text&gt;().text = ach.Describtion;
-  panelAchievements.transform.GetChild(2).GetComponent&lt;Image&gt;().sprite = ach.image;
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">void</span> <span class="nf">PassInformations</span><span class="p">(</span><span class="kt">int</span> <span class="n">ID</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Database_Achievements</span><span class="p">.</span><span class="n">Achievement</span> <span class="n">ach</span> <span class="p">=</span><span class="n">database</span><span class="p">.</span><span class="nf">FetchItembyID</span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
+  <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">ach</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+  <span class="n">panelAchievements</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Text</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">Title</span><span class="p">;</span>
+  <span class="n">panelAchievements</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Text</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">Describtion</span><span class="p">;</span>
+  <span class="n">panelAchievements</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">2</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Image</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;().</span><span class="n">sprite</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">image</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>This will pass the values from database to UI.</p>
 
 <p>I’m calling it inside existing CountClicks() method.</p>
 
-<p>[code language=”csharp”]
-//We need to add following namespace
-using UnityEngine.UI;
-//and reference
-public Database_Achievements database;
-  void CountClicks()
-  {
-  numberOfClicks++;
-    if (numberOfClicks &gt;= 10 &amp;&amp; !achievement01Unlocked)
-    {
-      PassInformations(1);
-      StartCoroutine(PanelCall());
-      achievement01Unlocked = true;
-    }
-  }
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="c1">//We need to add following namespace
+</span><span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+<span class="c1">//and reference
+</span><span class="k">public</span> <span class="n">Database_Achievements</span> <span class="n">database</span><span class="p">;</span>
+  <span class="k">void</span> <span class="nf">CountClicks</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="n">numberOfClicks</span><span class="p">++;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">numberOfClicks</span> <span class="p">&amp;</span><span class="n">gt</span><span class="p">;=</span> <span class="m">10</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="p">!</span><span class="n">achievement01Unlocked</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="nf">PassInformations</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+      <span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">PanelCall</span><span class="p">());</span>
+      <span class="n">achievement01Unlocked</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
 
 <p>You need to add reference to the database. You can attach database script to any object, i would crate new empty one. In next part i’ll show you how to create a new scene for collection of all achievements. You will also learn how to pass information between scenes. Stay Awesome!</p>
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

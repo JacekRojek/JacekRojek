@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-decorator-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -171,13 +171,13 @@
 <h2>Component</h2>
 <p>This interface will be used as base for decorator and concrete items. It contains methods that will return properties of an item.</p>
 
-<p>[code language=”csharp”]
-public interface IItem
-{
-    string GetName();
-    int GetValue();
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="n">IItem</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="nf">GetName</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">GetValue</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
@@ -185,76 +185,77 @@ public interface IItem
 
 <p> </p>
 
-<p>[code language=”csharp”]
-class Sword : IItem
-{
-    public string GetName()
-    {
-        return "Iron Sword";
-    }</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Sword</span> <span class="p">:</span> <span class="n">IItem</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Iron</span> <span class="n">Sword</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+    <span class="p">}</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public int GetValue()
-{
-    return 20;
-} } [/code]
+    <span class="k">public</span> <span class="kt">int</span> <span class="nf">GetValue</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="m">20</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 <h2>Decorator</h2>
 <p>This is the key part of the pattern, it maintains a reference to a Component object and defines an interface that conforms to Component’s interface. In my example this will be represented as an Enchantment of the item. Decorater will have form of abstract class and will have protected constructor</p>
 <blockquote>A protected member is accessible within its class and by derived class instances.</blockquote>
-<p>[code language=”csharp”]
-abstract class Enchantment : IItem
-{
-  IItem _item = null;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Enchantment</span> <span class="p">:</span> <span class="n">IItem</span>
+<span class="p">{</span>
+  <span class="n">IItem</span> <span class="n">_item</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
-<p>protected int _Value = 0;</p>
+  <span class="k">protected</span> <span class="kt">int</span> <span class="n">_Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 
-<p>protected Enchantment(IItem baseItem)
-  {
-    _item = baseItem;
-  }</p>
+  <span class="k">protected</span> <span class="nf">Enchantment</span><span class="p">(</span><span class="n">IItem</span> <span class="n">baseItem</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_item</span> <span class="p">=</span> <span class="n">baseItem</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>public string GetName()
-  {
-    return (_item.GetName() +" +1 ");
-  }</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetName</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">_item</span><span class="p">.</span><span class="nf">GetName</span><span class="p">()</span> <span class="p">+&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span><span class="m">1</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
 
-<p>public int GetValue()
-  {
-    return (_item.GetValue() + _Value);
-  }
-}</p>
+  <span class="k">public</span> <span class="kt">int</span> <span class="nf">GetValue</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">_item</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">()</span> <span class="p">+</span> <span class="n">_Value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>[/code]</p>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Class that extends the Decorator can change the protected vales in parent to eventually change the return values.</p>
 
-<p>[code language=”csharp”]
-class Magic : Enchantment
-{
-  public Magic(IItem baseComponent): base(baseComponent)
-  {
-    this._Value = 30;
-  }
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Magic</span> <span class="p">:</span> <span class="n">Enchantment</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="nf">Magic</span><span class="p">(</span><span class="n">IItem</span> <span class="n">baseComponent</span><span class="p">):</span> <span class="k">base</span><span class="p">(</span><span class="n">baseComponent</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">_Value</span> <span class="p">=</span> <span class="m">30</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 <h2>Client</h2>
 <p>Last part of an application. Here the instance of an item is created and modified. In this example you can see how the values changed after adding decorator.</p>
 
-<p>[code language=”csharp”]
-class Program
-{
-  static void Main(string[] args)
-  {
-    IItem newItem = new Sword();
-    Console.WriteLine(newItem.GetName() + " Value: " + newItem.GetValue().ToString());</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">IItem</span> <span class="n">newItem</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Sword</span><span class="p">();</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">newItem</span><span class="p">.</span><span class="nf">GetName</span><span class="p">()</span> <span class="p">+</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="n">Value</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span> <span class="n">newItem</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>newItem = new Magic(newItem);
-Console.WriteLine(newItem.GetName() + &amp;quot; Value: &amp;quot; + newItem.GetValue().ToString());
+    <span class="n">newItem</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Magic</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">newItem</span><span class="p">.</span><span class="nf">GetName</span><span class="p">()</span> <span class="p">+</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="n">Value</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span> <span class="n">newItem</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">().</span><span class="nf">ToString</span><span class="p">());</span>
 
-Console.ReadLine();   } } [/code]
+    <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
@@ -268,6 +269,10 @@ Console.ReadLine();   } } [/code]
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

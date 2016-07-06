@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/unity-eventmanager/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -165,12 +165,12 @@
 
 <p>This event system will be responsible for sending messages between Objects, scripts. We will use Dictionary to store UnityEvents and names of the events.</p>
 
-<p>[code language=”csharp”]
-private Dictionary &lt;string, UnityEvent&gt; eventDictionary;
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">private</span> <span class="n">Dictionary</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">,</span> <span class="n">UnityEvent</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">eventDictionary</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p>Here is the code attached to the new Empty Game object. It’s responsible for transferring massages between objects. Both Subscriber and Trigger  will refer to instance of this class. In my example this will be the same object, image on the canvas.
-[code language=”csharp”]
+~~~ c#<br />
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
@@ -236,13 +236,13 @@ using System.Collections.Generic;</p>
  }
  }
 }
-[/code]
+~~~ 
 Way of getting instance of the this class by other objects is similar to Singleton pattern. There is only one instance of this class in the game scene. In this example I have only one scene so I’m not doing check conditions, to simplify the code.</p>
 
 <p> </p>
 
 <p> 
-[code language=”csharp”]
+~~~ c#<br />
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -269,7 +269,7 @@ public class EventSubscriber : MonoBehaviour
 
 <p>}
 }
-[/code]
+~~~ 
 This script is attached to an Image on the scene.  We subscribe to the Action when script is enabled, at the beginning of the game. And we need to unsubscribe the event to optimize performance of the program. To trigger an event we need just one  line of code and  EventManager is doing for us everything  in the background.</p>
 
 <p>This way even very complex relations between objects can be simplified to just few lines. We can subscribe more than one method, in different parts of game. In my example I’m triggering the event from he same script but it can be called from any other script. I’ll describe more practical use of it in next post. For more informations on this topic visit <a href="https://unity3d.com/learn/tutorials/topics/scripting/events-creating-simple-messaging-system">UnitySite</a>.  Stay Awesome!</p>
@@ -278,6 +278,10 @@ This script is attached to an Image on the scene.  We subscribe to the Action
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-adapter-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -181,26 +181,26 @@
 
 <p>Lest begin by crating SpecialEnemy class that’s using CastSpell method. That is called Adaptee and will be used later in Adapter Class.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class SpecialEnemy
 {
   public string CastSpell()
   {
      return "using spell";
   }
-}[/code]
+}~~~ 
 I will use return string to simplify the process.</p>
 
 <p>Next lest create Interface IEnemy for managing the enemies behaviour, in this case it’s only one method for Attack.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 interface IEnemy
 {
   string Attack();
-}[/code]
+}~~~ 
 Now we need to inherit this interface by EnemyAdapter Class that will connect both pieces together.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class EnemyAdapter: IEnemy
 {
   SpecialEnemy e = new SpecialEnemy();
@@ -208,12 +208,12 @@ class EnemyAdapter: IEnemy
   {
      return e.CastSpell();
   }
-}[/code]
+}~~~ 
 We need to add reference to the Adaptee in order to have access to CastSpell method. This way we can use the Attack Method without implementation it SpecialEnemy Adaptee.</p>
 
 <p>Last step is to call the Enemy Attack method in client Class.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class Program
 {
   static void Main(string[] args)
@@ -222,13 +222,17 @@ class Program
     Console.WriteLine(enemy.Attack());
     Console.ReadLine();
   }
-}[/code]
+}~~~ 
 As an output we get “using spell” string displayed.</p>
 
 <p>This example was oversimplified, but it demonstrates the idea behind this simple pattern. I hope you will find it useful. In next article I’ll demonstrate another exciting creational Pattern called Builder. Stay Awesome!</p>
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

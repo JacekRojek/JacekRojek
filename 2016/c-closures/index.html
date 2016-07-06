@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-closures/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -169,30 +169,38 @@
 
 <p>To demonstrate this concept I’ll be using slightly modified example given by <a href="https://www.youtube.com/watch?v=gBO_4BMbsO8">Jamie King </a></p>
 
-<p>[code language=”csharp”]
-class Program
-{
-  static void Main(string[] args)
-  {
-     Action a = MyAction();
-     Action b = MyAction();
-     a(); a(); a();
-     b(); b();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">Action</span> <span class="n">a</span> <span class="p">=</span> <span class="nf">MyAction</span><span class="p">();</span>
+     <span class="n">Action</span> <span class="n">b</span> <span class="p">=</span> <span class="nf">MyAction</span><span class="p">();</span>
+     <span class="nf">a</span><span class="p">();</span> <span class="nf">a</span><span class="p">();</span> <span class="nf">a</span><span class="p">();</span>
+     <span class="nf">b</span><span class="p">();</span> <span class="nf">b</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> Console.ReadLine(); //Output will be  // 1 2 3 // 1 2   }   static Action MyAction()   {
- Action ret = null;
-int i = 0;
-ret += () =&amp;gt;
-{
-   i++;
-};
-ret += () =&amp;gt;;
-{
-   Console.WriteLine(&amp;quot;Action i= &amp;quot; +i);
-};
-return ret;   } } [/code] This is great way of demonstrating how closures works. We create a static method that contains int i, and returns an action. To demonstrate and example of chaining i created two lambda expressions, one for incrementing the i value and one for printing the variable. This method is called multiple times inside the main method.
+     <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+<span class="c1">//Output will be 
+// 1 2 3
+// 1 2
+</span>  <span class="p">}</span>
+  <span class="k">static</span> <span class="n">Action</span> <span class="nf">MyAction</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Action</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="n">ret</span> <span class="p">+=</span> <span class="p">()</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span>
+    <span class="p">{</span>
+       <span class="n">i</span><span class="p">++;</span>
+    <span class="p">};</span>
+    <span class="n">ret</span> <span class="p">+=</span> <span class="p">()</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;;</span>
+    <span class="p">{</span>
+       <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Action</span> <span class="n">i</span><span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
+<p>This is great way of demonstrating how closures works. We create a static method that contains int i, and returns an action. To demonstrate and example of chaining i created two lambda expressions, one for incrementing the i value and one for printing the variable. This method is called multiple times inside the main method.</p>
 
 <p>Two different actions can refer to the same i variable and have different outcomes. It’s because each time we create new action and we call this method C# is creating a class in the background, class that stores the values that is using. This way we can refer to the value from the original scope and with new copies of action we have different values. This is syntax sugar added in later version of C#. This was just vary simple illustration of the concept of courses. In the next post I’ll cover more practical, real word examples. Stay Awesome!</p>
 
@@ -200,6 +208,10 @@ return ret;   } } [/code] This is great way of demonstrating how closures works
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

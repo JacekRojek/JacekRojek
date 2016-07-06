@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-facade-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -199,7 +199,7 @@
 
 <p>First lets create Move Subclass that contains two methods each method returns a string.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 internal class Move
 {
   public string FindPlayer()
@@ -211,25 +211,25 @@ internal class Move
   {
      return "Now I’m moving ";
   }
-}[/code]
+}~~~ 
 <strong> internal</strong> keyword means that class is accessible from within the current assembly.</p>
 
 <p>Second subclass will be very similar</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 internal class Speak
 {
  public string SpeakToplayer()
  {
     return "Hi! How are You";
  }
-}[/code]</p>
+}~~~</p>
 
 <p> </p>
 
 <p>Now lets implement the Facade Pattern into EnemyFacade Class.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class EnemyFacade
 {
   Move a = new Move();
@@ -241,19 +241,19 @@ class EnemyFacade
     Console.WriteLine(a.MoveToPlayer());
     Console.WriteLine(b.SpeakToplayer());
   }
-}[/code]
+}~~~ 
 You need to create instances of each subclass in order to call the methods. My methods returns string variable so i can print result straight to the console.</p>
 
 <p>Last part of code will be our client class that  calls the Facade method.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class Program
 {
   static void Main(string[] args)
   {
     EnemyFacade facade = new EnemyFacade();</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>facade.Interact();   } }[/code]
+<div class="highlighter-rouge"><pre class="highlight"><code>facade.Interact();   } }~~~ 
 </code></pre>
 </div>
 
@@ -265,6 +265,10 @@ class Program
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

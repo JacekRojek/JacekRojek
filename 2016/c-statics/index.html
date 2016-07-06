@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-statics/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -167,21 +167,21 @@
 
 <p>In My example use MyClass to store two static fields with initial values. I can acess those variabels from Program Class. I dont need instance of the class to call the variables.</p>
 
-<p>[code language=”csharp”]
-class Program
-{
-  static void Main(string[] args)
-  {
-      Console.WriteLine(MyClass.i.ToString()+" "+MyClass.name);
-  }
-}</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">MyClass</span><span class="p">.</span><span class="n">i</span><span class="p">.</span><span class="nf">ToString</span><span class="p">()+&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;+</span><span class="n">MyClass</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>class MyClass
-{
-  public static int i=0;
-  public static string name="John";
-}
-[/code]</p>
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">i</span><span class="p">=</span><span class="m">0</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">name</span><span class="p">=&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">John</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <h3>Static  Methods</h3>
 
@@ -191,40 +191,44 @@ class Program
 
 <p> </p>
 
-<p>[code language=”csharp”]
-class Program
-{
-  static void Main(string[] args)
-  {
-      MyClass.Print();
-  }</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">MyClass</span><span class="p">.</span><span class="nf">Print</span><span class="p">();</span>
+  <span class="p">}</span>
 
-<p>}
-class MyClass
-{
-  public static void Print()
-  {
-     Console.WriteLine("This is Static method");
-  }
-}
-[/code]
- </p>
+<span class="p">}</span>
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Print</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">This</span> <span class="k">is</span> <span class="n">Static</span> <span class="n">method</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p> </p>
 <h3>Static Classes</h3>
 <p>A static class is never instantiated. The static keyword on a class enforces that a type not be created with a constructor. Class with static keyword can not have any instances.This eliminates misuse of the class.</p>
 
 <p>A static class is a class which can only contain static members. Like variables and methods from previous examples.</p>
 
-<p>[code language=”csharp”]
-static class MyClass
-// Line below can not be executed.</p>
-
-<p>// MyClass a = new MyClass();
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">static</span> <span class="k">class</span> <span class="nc">MyClass</span>
+<span class="c1">// Line below can not be executed. 
+</span>
+<span class="c1">// MyClass a = new MyClass();
+</span></code></pre>
+</div>
 
 <p>Now you know the basic implementation of static keyword it can be useful when working with large and complex projects whits a lot of connections. Statics can improve the performance and make variables/methods easier to access. In my Unity Tutorials I’ll demonstrate the use of statics in real word examples. Stay Awesome!</p>
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

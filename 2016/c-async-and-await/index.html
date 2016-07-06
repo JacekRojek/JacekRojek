@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-async-and-await/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -173,46 +173,50 @@
 
 <p> </p>
 
-<p>[code language=”csharp”]
-using System;
-using System.Threading.Tasks;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
 
-<p>class Program
-{
-  static void Main()
-  {
-    //Here I create an instance of MyClass
-    MyClass a = new MyClass();</p>
+<span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">//Here I create an instance of MyClass
+</span>    <span class="n">MyClass</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MyClass</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>//This calls the async Method
-Task task = a.DoWork();
-//This line is execued after the task is done
-Console.WriteLine(&amp;quot;Done&amp;quot;);
-Console.ReadLine();   }   public class MyClass{   //This async method contains await method   public async Task DoWork()   {
-int res = await Task.FromResult&amp;lt;int&amp;gt;(Iterate(4, 10));
+    <span class="c1">//This calls the async Method
+</span>    <span class="n">Task</span> <span class="n">task</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">DoWork</span><span class="p">();</span>
+    <span class="c1">//This line is execued after the task is done
+</span>    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Done</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span><span class="p">{</span>
+  <span class="c1">//This async method contains await method
+</span>  <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">DoWork</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">res</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">int</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="nf">Iterate</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">10</span><span class="p">));</span>
 
-//This line is executed after the iterations
-Console.WriteLine(res);   }
-</code></pre>
+    <span class="c1">//This line is executed after the iterations
+</span>    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="kt">int</span> <span class="nf">Iterate</span><span class="p">(</span><span class="kt">int</span> <span class="n">initialValue</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numberOfTimes</span><span class="p">)</span>
+  <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">numberOfTimes</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+  <span class="p">{</span>
+     <span class="n">initialValue</span><span class="p">++;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">initialValue</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//Output
+</span>
+<span class="c1">//14
+</span>
+<span class="c1">//Done&amp;lt;/pre&amp;gt;
+</span></code></pre>
 </div>
-
-<p>private int Iterate(int initialValue, int numberOfTimes)
-  {</p>
-
-<p>for (int i = 0; i &lt; numberOfTimes; i++)
-  {
-     initialValue++;
-  }
-  return initialValue;
-  }
-}</p>
-
-<p>//Output</p>
-
-<p>//14</p>
-
-<p>//Done&lt;/pre&gt;
-[/code]</p>
 
 <p>Async class can have 3 different returns:</p>
 <ul>
@@ -228,6 +232,10 @@ The <strong>async</strong> and <strong>await</strong> keywords don't cause addit
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

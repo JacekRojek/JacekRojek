@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-proxy-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -193,15 +193,15 @@
 
 <p>Let’s begin by creating Interface that will be implemented by both Classes.</p>
 
-<p>[code language=”csharp”]public interface IEquipment
+<p>~~~ c#  public interface IEquipment
 {
   string GetData();
-}[/code]
+}~~~ 
 Nothing fancy, just to demonstrate the idea behind the pattern. Subject Interface provides and interface that both actual class and proxy class will implement. this way the proxy can easily be used as substitute for the real subject.</p>
 
 <p>Next step is to create Equipment Class that is our Real Subject</p>
 
-<p>[code language=”csharp”] public class Equipment : IEquipment
+<p>~~~ c#   public class Equipment : IEquipment
 {
   string itemName;
   public int intemId;
@@ -216,12 +216,12 @@ Nothing fancy, just to demonstrate the idea behind the pattern. Subject Interfa
   {
     return (itemName + " ID: "+ intemId.ToString());
   }
-}[/code]
+}~~~ 
 This class also contains one item with name and ID, which is represented just by fields, in more real example it would be list of Items. We assign new values when instance of this class is created.</p>
 
 <p>Now we need to create Proxy that will have a reference to the Real Subject  and will modify the GetData() method to restrict the access.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 public class EquipmentProxy : IEquipment
 {
   Equipment client = new Equipment();</p>
@@ -232,20 +232,20 @@ public class EquipmentProxy : IEquipment
          return client.GetData();</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> else
-     return &amp;quot;Item is not in inventory&amp;quot;;    }  }[/code] Id is hard typed and set to 4 just for the example. The application will use this class and this class will internally take care of talking to the RealSubject and get the data to the local application.
+     return &amp;quot;Item is not in inventory&amp;quot;;    }  }~~~  Id is hard typed and set to 4 just for the example. The application will use this class and this class will internally take care of talking to the RealSubject and get the data to the local application.
 </code></pre>
 </div>
 
 <p>Last part of the application is Client site, where Instance of the proxy is created and GetData() method is called.</p>
 
-<p>[code language=”csharp”]class Program
+<p>~~~ c#  class Program
 {
   static void Main(string[] args)
   {
      EquipmentProxy proxy = new EquipmentProxy();
      Console.WriteLine("Data from Proxy: "+ proxy.GetData());</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> Console.ReadKey();   } }[/code]
+<div class="highlighter-rouge"><pre class="highlight"><code> Console.ReadKey();   } }~~~ 
 </code></pre>
 </div>
 
@@ -261,6 +261,10 @@ public class EquipmentProxy : IEquipment
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 
