@@ -178,118 +178,119 @@
 
 <p>So first let’s create an enemy Class, we will instantiate objects of this class in Concrete Builders.</p>
 
-<p>~~~ c#<br />
-class Enemy
-{
-  public string model;
-  public string behaviour;
-  public string components;
-}~~~ 
-Here we have three public variables just to  demonstrate the example.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Enemy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">model</span><span class="p">;</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">behaviour</span><span class="p">;</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">components</span><span class="p">;</span>
+</code></pre>
+</div>
+<p>Here we have three public variables just to  demonstrate the example.</p>
 
 <p>Next we need Builder interface that will contains all the method that will be implemented by Enemies Classes. And we have Get Enemy method that will return the Enemy Class instance after competing the construction process.</p>
 
-<p>~~~ c#<br />
-interface IEnemy
-{
-  void SelectModel();
-  void SelectBehaviour();
-  void AddComponents();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">interface</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">SelectModel</span><span class="p">();</span>
+  <span class="k">void</span> <span class="nf">SelectBehaviour</span><span class="p">();</span>
+  <span class="k">void</span> <span class="nf">AddComponents</span><span class="p">();</span>
 
-<p>Enemy GetEnemy();
-}~~~</p>
+  <span class="n">Enemy</span> <span class="nf">GetEnemy</span><span class="p">();</span>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Next step is to create Classes based on the interface. Each class will have unique implementation of the interface methods.  In order to get access to Enemy Class properties we need to create instance of this Class.</p>
 
-<p>~~~ c#<br />
-class EnemyTypeA : IEnemy
-{
-  Enemy enemy = new Enemy();
-  public void AddComponents()
-  {
-    enemy.components="Components Added";
-  }</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EnemyTypeA</span> <span class="p">:</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="n">Enemy</span> <span class="n">enemy</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">();</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">AddComponents</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">enemy</span><span class="p">.</span><span class="n">components</span><span class="p">=&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Components</span> <span class="n">Added</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public void SelectBehaviour()
-  {
-    enemy.behaviour= "Behaviour Type A Selected";
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectBehaviour</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">enemy</span><span class="p">.</span><span class="n">behaviour</span><span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Behaviour</span> <span class="n">Type</span> <span class="n">A</span> <span class="n">Selected</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public void SelectModel()
-  {
-     enemy.model = "Body Type A Selected";
-  }
-  public Enemy GetEnemy()
-  {
-     return enemy;
-  }
-}
-//EnemyTypeB
-class EnemyTypeB : IEnemy
-{
-  Enemy enemy = new Enemy();
-  public void AddComponents()
-  {
-     enemy.components = "Components Added";
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectModel</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">enemy</span><span class="p">.</span><span class="n">model</span> <span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Body</span> <span class="n">Type</span> <span class="n">A</span> <span class="n">Selected</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="n">Enemy</span> <span class="nf">GetEnemy</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="n">enemy</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//EnemyTypeB
+</span><span class="k">class</span> <span class="nc">EnemyTypeB</span> <span class="p">:</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="n">Enemy</span> <span class="n">enemy</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">();</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">AddComponents</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">enemy</span><span class="p">.</span><span class="n">components</span> <span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Components</span> <span class="n">Added</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public void SelectBehaviour()
-  {
-     enemy.behaviour = "Behaviour Type B Selected";
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectBehaviour</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">enemy</span><span class="p">.</span><span class="n">behaviour</span> <span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Behaviour</span> <span class="n">Type</span> <span class="n">B</span> <span class="n">Selected</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public void SelectModel()
-  {
-     enemy.model = "Body Type B Selected";
-  }
-  public Enemy GetEnemy()
-  {
-     return enemy;
-  }
-}~~~</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectModel</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">enemy</span><span class="p">.</span><span class="n">model</span> <span class="p">=</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Body</span> <span class="n">Type</span> <span class="n">B</span> <span class="n">Selected</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="n">Enemy</span> <span class="nf">GetEnemy</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="n">enemy</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Now it’s time for creating Director that will contain the logic behind creating new enemy. In Class constructor we pass IEnemy interface, this way we can pass any Class that inhirates form this interface.</p>
 
-<p>~~~ c#<br />
-class EnemyCreator
-{
-  private readonly IEnemy enemyBuilder;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EnemyCreator</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="k">readonly</span> <span class="n">IEnemy</span> <span class="n">enemyBuilder</span><span class="p">;</span>
 
-<p>public EnemyCreator( IEnemy enemyType)
-  {
-     enemyBuilder = enemyType;
-  }
-  public Enemy ConstructEnemy()
-  {
-    enemyBuilder.SelectBehaviour();
-    enemyBuilder.SelectModel();
-    enemyBuilder.AddComponents();</p>
+  <span class="k">public</span> <span class="nf">EnemyCreator</span><span class="p">(</span> <span class="n">IEnemy</span> <span class="n">enemyType</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">enemyBuilder</span> <span class="p">=</span> <span class="n">enemyType</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="n">Enemy</span> <span class="nf">ConstructEnemy</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">enemyBuilder</span><span class="p">.</span><span class="nf">SelectBehaviour</span><span class="p">();</span>
+    <span class="n">enemyBuilder</span><span class="p">.</span><span class="nf">SelectModel</span><span class="p">();</span>
+    <span class="n">enemyBuilder</span><span class="p">.</span><span class="nf">AddComponents</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>return enemyBuilder.GetEnemy();   } }~~~  Construct Enemy method return instance of Enemy Class with new properties.
+    <span class="k">return</span> <span class="n">enemyBuilder</span><span class="p">.</span><span class="nf">GetEnemy</span><span class="p">();</span>
+  <span class="p">}</span>
 </code></pre>
 </div>
+<p>Construct Enemy method return instance of Enemy Class with new properties.</p>
 
 <p>Last thing to complete the implementation is to create Client Class that will  create instances of each enemy type.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main(string[] args)
-  {
-  var enemyCreator = new EnemyCreator(new EnemyTypeA());
-  var enemy = enemyCreator.ConstructEnemy();
-  enemy.ShowInfo();
-  Console.WriteLine("<strong>__</strong><strong>__</strong><strong>__</strong>_____");
-  enemyCreator = new EnemyCreator(new EnemyTypeB());
-  enemy = enemyCreator.ConstructEnemy();
-  enemy.ShowInfo();
-  Console.ReadLine();
-  }
-}~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="kt">var</span> <span class="n">enemyCreator</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EnemyCreator</span><span class="p">(</span><span class="k">new</span> <span class="nf">EnemyTypeA</span><span class="p">());</span>
+  <span class="kt">var</span> <span class="n">enemy</span> <span class="p">=</span> <span class="n">enemyCreator</span><span class="p">.</span><span class="nf">ConstructEnemy</span><span class="p">();</span>
+  <span class="n">enemy</span><span class="p">.</span><span class="nf">ShowInfo</span><span class="p">();</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">_______________________</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="n">enemyCreator</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EnemyCreator</span><span class="p">(</span><span class="k">new</span> <span class="nf">EnemyTypeB</span><span class="p">());</span>
+  <span class="n">enemy</span> <span class="p">=</span> <span class="n">enemyCreator</span><span class="p">.</span><span class="nf">ConstructEnemy</span><span class="p">();</span>
+  <span class="n">enemy</span><span class="p">.</span><span class="nf">ShowInfo</span><span class="p">();</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 

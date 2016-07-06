@@ -181,49 +181,49 @@
 
 <p>Lest begin by crating SpecialEnemy class that’s using CastSpell method. That is called Adaptee and will be used later in Adapter Class.</p>
 
-<p>~~~ c#<br />
-class SpecialEnemy
-{
-  public string CastSpell()
-  {
-     return "using spell";
-  }
-}~~~ 
-I will use return string to simplify the process.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SpecialEnemy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">CastSpell</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="k">using</span> <span class="nn">spell</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>I will use return string to simplify the process.</p>
 
 <p>Next lest create Interface IEnemy for managing the enemies behaviour, in this case it’s only one method for Attack.</p>
 
-<p>~~~ c#<br />
-interface IEnemy
-{
-  string Attack();
-}~~~ 
-Now we need to inherit this interface by EnemyAdapter Class that will connect both pieces together.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">interface</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="kt">string</span> <span class="nf">Attack</span><span class="p">();</span>
+</code></pre>
+</div>
+<p>Now we need to inherit this interface by EnemyAdapter Class that will connect both pieces together.</p>
 
-<p>~~~ c#<br />
-class EnemyAdapter: IEnemy
-{
-  SpecialEnemy e = new SpecialEnemy();
-  public string Attack()
-  {
-     return e.CastSpell();
-  }
-}~~~ 
-We need to add reference to the Adaptee in order to have access to CastSpell method. This way we can use the Attack Method without implementation it SpecialEnemy Adaptee.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EnemyAdapter</span><span class="p">:</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="n">SpecialEnemy</span> <span class="n">e</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SpecialEnemy</span><span class="p">();</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">Attack</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="n">e</span><span class="p">.</span><span class="nf">CastSpell</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>We need to add reference to the Adaptee in order to have access to CastSpell method. This way we can use the Attack Method without implementation it SpecialEnemy Adaptee.</p>
 
 <p>Last step is to call the Enemy Attack method in client Class.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main(string[] args)
-  {
-    IEnemy enemy = new EnemyAdapter();
-    Console.WriteLine(enemy.Attack());
-    Console.ReadLine();
-  }
-}~~~ 
-As an output we get “using spell” string displayed.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">IEnemy</span> <span class="n">enemy</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EnemyAdapter</span><span class="p">();</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enemy</span><span class="p">.</span><span class="nf">Attack</span><span class="p">());</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>As an output we get “using spell” string displayed.</p>
 
 <p>This example was oversimplified, but it demonstrates the idea behind this simple pattern. I hope you will find it useful. In next article I’ll demonstrate another exciting creational Pattern called Builder. Stay Awesome!</p>
 

@@ -236,7 +236,7 @@ using System.Collections.Generic;</p>
  }
  }
 }
-~~~ 
+~~~  <br />
 Way of getting instance of the this class by other objects is similar to Singleton pattern. There is only one instance of this class in the game scene. In this example I have only one scene so I’m not doing check conditions, to simplify the code.</p>
 
 <p> </p>
@@ -269,7 +269,7 @@ public class EventSubscriber : MonoBehaviour
 
 <p>}
 }
-~~~ 
+~~~  <br />
 This script is attached to an Image on the scene.  We subscribe to the Action when script is enabled, at the beginning of the game. And we need to unsubscribe the event to optimize performance of the program. To trigger an event we need just one  line of code and  EventManager is doing for us everything  in the background.</p>
 
 <p>This way even very complex relations between objects can be simplified to just few lines. We can subscribe more than one method, in different parts of game. In my example I’m triggering the event from he same script but it can be called from any other script. I’ll describe more practical use of it in next post. For more informations on this topic visit <a href="https://unity3d.com/learn/tutorials/topics/scripting/events-creating-simple-messaging-system">UnitySite</a>.  Stay Awesome!</p>

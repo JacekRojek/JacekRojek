@@ -175,39 +175,39 @@
 
 <p>First we need to create IObserver Interface that will be used as a base for Concrete Classes.</p>
 
-<p>~~~ c#<br />
-public interface IObserver
-{
-  void Update();
-}~~~ 
-Simple as that. Next we need to write implementation of this Interface in  Concrete Classes.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="n">IObserver</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">Update</span><span class="p">();</span>
+</code></pre>
+</div>
+<p>Simple as that. Next we need to write implementation of this Interface in  Concrete Classes.</p>
 
-<p>~~~ c#<br />
-public class UserInteface : IObserver
-{
-  public void Update()
-  {
-     Console.WriteLine("Interface Updated");
-  }
-}
-public class DifferentUnit : IObserver
-{
-  public void Update()
-  {
-     Console.WriteLine("Relation Updated");
-  }
-}~~~ 
-In this example we don’t need any extra parameters, just implementation of an Update() method.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">UserInteface</span> <span class="p">:</span> <span class="n">IObserver</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Interface</span> <span class="n">Updated</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DifferentUnit</span> <span class="p">:</span> <span class="n">IObserver</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Relation</span> <span class="n">Updated</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>In this example we don’t need any extra parameters, just implementation of an Update() method.</p>
 
 <p>Now lets move our attention to Subject site.  Subject interface need methods for subscribing and unsubsribing Observers. And method for Notifing the Listeners about the cahnge.</p>
 
-<p>~~~ c#<br />
-interface IEnemy
-{
-  void Subscribe(IObserver observer);
-  void Unsubscribe(IObserver observer);
-  void Notify();
-}~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">interface</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">);</span>
+  <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">);</span>
+  <span class="k">void</span> <span class="nf">Notify</span><span class="p">();</span>
+</code></pre>
+</div>
 
 <p> </p>
 
@@ -215,57 +215,57 @@ interface IEnemy
 
 <p>Enemy class inherits from IEnemy interface. It contains generic list of Observers, using interface as an object allows you to store objects of any class that inherits form IObserver interface. Notify() is called whenever health value is changing. Subscribe and Unsubscribe methods are using methods from List library</p>
 
-<p>~~~ c#<br />
-public class Enemy : IEnemy
-{
-  private List&lt;IObserver&gt; observers = new List&lt;IObserver&gt;();
-  private int _health=10;
-  public int Health
-  {
-    get { return _health; }
-    set
-    {
-      _health = value;
-      Notify();
-    }
-  }</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Enemy</span> <span class="p">:</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IObserver</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">observers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IObserver</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+  <span class="k">private</span> <span class="kt">int</span> <span class="n">_health</span><span class="p">=</span><span class="m">10</span><span class="p">;</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">Health</span>
+  <span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_health</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">set</span>
+    <span class="p">{</span>
+      <span class="n">_health</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+      <span class="nf">Notify</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<p>public void Notify()
-  {
-     observers.ForEach(x =&gt; x.Update());
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Notify</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">observers</span><span class="p">.</span><span class="nf">ForEach</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="nf">Update</span><span class="p">());</span>
+  <span class="p">}</span>
 
-<p>public void Subscribe(IObserver observer)
-  {
-     observers.Add(observer);
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">observers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">observer</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<p>public void Unsubscribe(IObserver observer)
-  {
-     observers.Remove(observer);
-  }
-}~~~ 
-Last part of implementation contains Client Class that will be used to create instances of Enemy Class and to display the final output.</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">observers</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">observer</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>Last part of implementation contains Client Class that will be used to create instances of Enemy Class and to display the final output.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main(string[] args)
-  {
-  Enemy subject = new Enemy();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="n">Enemy</span> <span class="n">subject</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">();</span>
 
-<p>IObserver observer1 = new UserInteface();
-  subject.Subscribe(observer1);</p>
+  <span class="n">IObserver</span> <span class="n">observer1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">UserInteface</span><span class="p">();</span>
+  <span class="n">subject</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">observer1</span><span class="p">);</span>
 
-<p>subject.Subscribe(new DifferentUnit());
-  subject.Health++;
-  Console.WriteLine("——————–");
-  subject.Unsubscribe(observer1);
-  subject.Health–;
-  Console.ReadLine();
-  }
-}~~~ 
-Here you can see that two Concrete Classes are added to the Observer List by calling subscription method. Changing health value causes Notify() method that prints the values to the console. Later I unsubscribe one item from Observer and I’m changing the value once again, this time by decrementing the health value.</p>
+  <span class="n">subject</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="k">new</span> <span class="nf">DifferentUnit</span><span class="p">());</span>
+  <span class="n">subject</span><span class="p">.</span><span class="n">Health</span><span class="p">++;</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;--------------------&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="n">subject</span><span class="p">.</span><span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">observer1</span><span class="p">);</span>
+  <span class="n">subject</span><span class="p">.</span><span class="n">Health</span><span class="p">--;</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>Here you can see that two Concrete Classes are added to the Observer List by calling subscription method. Changing health value causes Notify() method that prints the values to the console. Later I unsubscribe one item from Observer and I’m changing the value once again, this time by decrementing the health value.</p>
 
 <p>To conclude, Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependants are notified and updated automatically.</p>
 

@@ -188,14 +188,14 @@
   <span class="kt">string</span> <span class="nf">Heal</span><span class="p">();</span>
   <span class="kt">string</span> <span class="nf">BuffON</span><span class="p">();</span>
   <span class="kt">string</span> <span class="nf">BuffOFF</span><span class="p">();</span>
-<span class="p">}~~~</span> 
+</code></pre>
+</div>
 
-<span class="n">Each</span> <span class="n">method</span> <span class="n">will</span> <span class="k">return</span> <span class="n">a</span> <span class="kt">string</span> <span class="n">with</span> <span class="n">massage</span> <span class="n">about</span> <span class="n">current</span> <span class="n">status</span><span class="p">.</span>
+<p>Each method will return a string with massage about current status.</p>
 
-<span class="n">Here</span> <span class="k">is</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="k">interface</span> <span class="k">in</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Enemy</span> <span class="n">Class</span><span class="p">.</span> <span class="n">Second</span> <span class="n">One</span> <span class="k">is</span> <span class="n">very</span> <span class="n">similar</span> <span class="n">and</span> <span class="n">you</span> <span class="n">can</span> <span class="n">find</span> <span class="n">it</span> <span class="k">in</span> <span class="n">source</span> <span class="n">code</span><span class="p">.</span>
+<p>Here is implementation of the interface in one of the Enemy Class. Second One is very similar and you can find it in source code.</p>
 
-<span class="p">~~~</span> <span class="n">c</span><span class="err">#</span>  
-
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
 <span class="k">class</span> <span class="nc">Goblin</span> <span class="p">:</span> <span class="n">IEnemy</span>
 <span class="p">{</span>
   <span class="k">public</span> <span class="kt">string</span> <span class="nf">BuffOFF</span><span class="p">()</span>
@@ -227,7 +227,7 @@
 <span class="p">{</span>
   <span class="k">void</span> <span class="nf">Execute</span><span class="p">();</span>
   <span class="k">void</span> <span class="nf">UnDo</span><span class="p">();</span>
-<span class="p">}</span> <span class="p">~~~</span> 
+<span class="p">}</span> <span class="p">~~~</span>    
 
 <span class="n">implementation</span> <span class="n">of</span> <span class="k">this</span> <span class="k">interface</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">an</span> <span class="n">IEnemy</span> <span class="n">receiver</span><span class="p">,</span> <span class="k">in</span> <span class="k">class</span> <span class="nc">constructor</span> <span class="n">we</span> <span class="n">pass</span> <span class="n">the</span> <span class="n">receiver</span><span class="err"> </span><span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">manipulated</span> <span class="k">by</span> <span class="n">the</span> <span class="n">command</span><span class="p">.</span> <span class="n">Again</span> <span class="n">I</span><span class="err">'</span><span class="n">m</span> <span class="n">showing</span> <span class="n">here</span> <span class="n">just</span> <span class="n">one</span> <span class="n">of</span> <span class="n">two</span> <span class="n">Classes</span><span class="p">,</span> <span class="n">because</span> <span class="n">both</span> <span class="n">are</span> <span class="n">identical</span><span class="p">.</span>
 
@@ -283,22 +283,23 @@
 <h2>Client</h2>
 <p>This is the last part of the program that connect everything together. In this specific example I chose the situation when Enemy Goblin Enters the Field, what trigger the Heal command. After leaving the field Goblin Takes Damage.</p>
 
-<p>~~~ c#</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Create receiver, command, and invoker
+</span>  <span class="n">IEnemy</span> <span class="n">receiver</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Goblin</span><span class="p">();</span>
+  <span class="n">ICommand</span> <span class="n">command</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Heal</span><span class="p">(</span><span class="n">receiver</span><span class="p">);</span>
+  <span class="n">Field</span> <span class="n">invoker</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Field</span><span class="p">();</span>
 
-<p>static void Main()
-{
-  // Create receiver, command, and invoker
-  IEnemy receiver = new Goblin();
-  ICommand command = new Heal(receiver);
-  Field invoker = new Field();</p>
+  <span class="c1">// Set and execute command
+</span>  <span class="n">invoker</span><span class="p">.</span><span class="nf">SetCommand</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+  <span class="n">invoker</span><span class="p">.</span><span class="nf">EnterField</span><span class="p">();</span>
+  <span class="n">invoker</span><span class="p">.</span><span class="nf">ExitField</span><span class="p">();</span>
 
-<p>// Set and execute command
-  invoker.SetCommand(command);
-  invoker.EnterField();
-  invoker.ExitField();</p>
-
-<p>Console.ReadKey();
-}~~~</p>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">ReadKey</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>This was just a simple demonstration of the pattern, one way of extending the functionality of it is to store command in the generic list, this way we can undo multiple commands or execute command already executed in the past. I hope you like will find it useful. In my next article I’ll cover on of the last design patters. Stay Awesome!</p>
 

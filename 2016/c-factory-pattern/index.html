@@ -181,93 +181,99 @@
 
 <p>First let’s create Interface that will be shared between all enemies that can be crated with Factory. This will be used by client.</p>
 
-<p>~~~ c#<br />
-public interface IFactory
-{
-  void Demage(int dmg);
-}~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="n">IFactory</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">Demage</span><span class="p">(</span><span class="kt">int</span> <span class="n">dmg</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Now we need to create Classes that will inherit this interface. In my example this will be enemyType1 and 2.</p>
 
-<p>~~~ c#<br />
-public class EnemyType1 : IFactory
-{
-  int _health=100;
-  public void Demage(int dmg)
-  {
-     _health -= dmg;
-     Console.WriteLine("EnemyType1 health:" + _health.ToString());
-  }
-}</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">EnemyType1</span> <span class="p">:</span> <span class="n">IFactory</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">_health</span><span class="p">=</span><span class="m">100</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Demage</span><span class="p">(</span><span class="kt">int</span> <span class="n">dmg</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">_health</span> <span class="p">-=</span> <span class="n">dmg</span><span class="p">;</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">EnemyType1</span> <span class="n">health</span><span class="p">:&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span> <span class="n">_health</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>public class EnemyType2 : IFactory
-{
-  int _health = 200;
-  public void Demage(int dmg)
-  {
-     _health -= dmg;
-     Console.WriteLine("EnemyType2 health:" + _health.ToString());
-  }
-}~~~ 
-Both classes also contains health count, just to make it more interesting.</p>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EnemyType2</span> <span class="p">:</span> <span class="n">IFactory</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">_health</span> <span class="p">=</span> <span class="m">200</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Demage</span><span class="p">(</span><span class="kt">int</span> <span class="n">dmg</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">_health</span> <span class="p">-=</span> <span class="n">dmg</span><span class="p">;</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">EnemyType2</span> <span class="n">health</span><span class="p">:&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span> <span class="n">_health</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Both classes also contains health count, just to make it more interesting.</p>
 
 <p>Next we need to create the Interface for factory itself.</p>
 
-<p>~~~ c#<br />
-public abstract class EnemyFactory
-{
-  public abstract IFactory InstantiateEnemy(int type);
-}~~~ 
-As a return type we use interface IFactory, this way we can return any object that inherits from it.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">EnemyFactory</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">abstract</span> <span class="n">IFactory</span> <span class="nf">InstantiateEnemy</span><span class="p">(</span><span class="kt">int</span> <span class="n">type</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>As a return type we use interface IFactory, this way we can return any object that inherits from it.</p>
 
 <p>In The factory Class we override the method with switch statement that will return the objects based on the input number.</p>
 
-<p>~~~ c#<br />
-public class InstantiateEnemyFactory : EnemyFactory
-{
-  public override IFactory InstantiateEnemy(int type)
-  {
-     switch (type)
-     {
-        case 1:
-            return new EnemyType1();
-        case 2:
-           return new EnemyType2();
-         default:
-           throw new ApplicationException(string.Format("Wrong number"));
-     }
-  }
-}~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">InstantiateEnemyFactory</span> <span class="p">:</span> <span class="n">EnemyFactory</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="n">IFactory</span> <span class="nf">InstantiateEnemy</span><span class="p">(</span><span class="kt">int</span> <span class="n">type</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span>
+     <span class="p">{</span>
+        <span class="k">case</span> <span class="m">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">EnemyType1</span><span class="p">();</span>
+        <span class="k">case</span> <span class="m">2</span><span class="p">:</span>
+           <span class="k">return</span> <span class="k">new</span> <span class="nf">EnemyType2</span><span class="p">();</span>
+         <span class="k">default</span><span class="p">:</span>
+           <span class="k">throw</span> <span class="k">new</span> <span class="nf">ApplicationException</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="nf">Format</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Wrong</span> <span class="n">number</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;));</span>
+     <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Last step is to create client that will use the factory class.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main(string[] args)
-  {
-  //random number
-  int type = new Random().Next(1, 1000)% 2 + 1;
-  //Instance of the class
-  EnemyFactory factory = new InstantiateEnemyFactory();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="c1">//random number
+</span>  <span class="kt">int</span> <span class="n">type</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="p">().</span><span class="nf">Next</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1000</span><span class="p">)%</span> <span class="m">2</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+  <span class="c1">//Instance of the class
+</span>  <span class="n">EnemyFactory</span> <span class="n">factory</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InstantiateEnemyFactory</span><span class="p">();</span>
 
-<p>IFactory newEnemy= factory.InstantiateEnemy(type);
-  newEnemy.Demage(20);</p>
+  <span class="n">IFactory</span> <span class="n">newEnemy</span><span class="p">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">InstantiateEnemy</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+  <span class="n">newEnemy</span><span class="p">.</span><span class="nf">Demage</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
 
-<p>type = new Random().Next(1, 2000)%2 + 1;</p>
+  <span class="n">type</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="p">().</span><span class="nf">Next</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2000</span><span class="p">)%</span><span class="m">2</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
 
-<p>IFactory newEnemy2 = factory.InstantiateEnemy(type);
-  newEnemy2.Demage(20);</p>
+  <span class="n">IFactory</span> <span class="n">newEnemy2</span> <span class="p">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">InstantiateEnemy</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+  <span class="n">newEnemy2</span><span class="p">.</span><span class="nf">Demage</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
 
-<p>Console.ReadKey();</p>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">ReadKey</span><span class="p">();</span>
 
-<p>}
-}~~~ 
-Numbers don’t have to be random. I’m using random numbers to demonstrate the example. I real world we would rather create a list of enemies rather than choosing name for each of them.</p>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Numbers don’t have to be random. I’m using random numbers to demonstrate the example. I real world we would rather create a list of enemies rather than choosing name for each of them.</p>
 
 <p>This patters is very simple and effective. This makes it commonly used across all languages. To conclude, Factory defines an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. I hope you found it useful and you will implement this pattern to your next project. Stay Awesome!</p>
 

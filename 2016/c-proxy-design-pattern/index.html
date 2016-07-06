@@ -196,7 +196,7 @@
 <p>~~~ c#  public interface IEquipment
 {
   string GetData();
-}~~~ 
+~~~  <br />
 Nothing fancy, just to demonstrate the idea behind the pattern. Subject Interface provides and interface that both actual class and proxy class will implement. this way the proxy can easily be used as substitute for the real subject.</p>
 
 <p>Next step is to create Equipment Class that is our Real Subject</p>
@@ -216,36 +216,37 @@ Nothing fancy, just to demonstrate the idea behind the pattern. Subject Interfa
   {
     return (itemName + " ID: "+ intemId.ToString());
   }
-}~~~ 
+~~~  <br />
 This class also contains one item with name and ID, which is represented just by fields, in more real example it would be list of Items. We assign new values when instance of this class is created.</p>
 
 <p>Now we need to create Proxy that will have a reference to the Real Subject  and will modify the GetData() method to restrict the access.</p>
 
-<p>~~~ c#<br />
-public class EquipmentProxy : IEquipment
-{
-  Equipment client = new Equipment();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">EquipmentProxy</span> <span class="p">:</span> <span class="n">IEquipment</span>
+<span class="p">{</span>
+  <span class="n">Equipment</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Equipment</span><span class="p">();</span>
 
-<p>public string GetData()
-  {
-     if (client.intemId == 4)
-         return client.GetData();</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetData</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">intemId</span> <span class="p">==</span> <span class="m">4</span><span class="p">)</span>
+         <span class="k">return</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetData</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> else
-     return &amp;quot;Item is not in inventory&amp;quot;;    }  }~~~  Id is hard typed and set to 4 just for the example. The application will use this class and this class will internally take care of talking to the RealSubject and get the data to the local application.
-</code></pre>
-</div>
+     <span class="k">else</span>
+         <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Item</span> <span class="k">is</span> <span class="n">not</span> <span class="k">in</span> <span class="n">inventory</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+   <span class="p">}</span>
+ <span class="p">~~~</span>    
+<span class="n">Id</span> <span class="k">is</span> <span class="n">hard</span> <span class="n">typed</span> <span class="n">and</span> <span class="k">set</span> <span class="n">to</span> <span class="m">4</span> <span class="n">just</span> <span class="k">for</span> <span class="n">the</span> <span class="n">example</span><span class="p">.</span> <span class="n">The</span><span class="err"> </span><span class="n">application</span> <span class="n">will</span> <span class="n">use</span> <span class="k">this</span> <span class="k">class</span> <span class="nc">and</span> <span class="k">this</span> <span class="k">class</span> <span class="nc">will</span> <span class="n">internally</span> <span class="n">take</span> <span class="n">care</span> <span class="n">of</span> <span class="n">talking</span> <span class="n">to</span> <span class="n">the</span> <span class="n">RealSubject</span> <span class="n">and</span> <span class="k">get</span> <span class="n">the</span> <span class="n">data</span> <span class="n">to</span> <span class="n">the</span> <span class="n">local</span> <span class="n">application</span><span class="p">.</span>
 
-<p>Last part of the application is Client site, where Instance of the proxy is created and GetData() method is called.</p>
+<span class="n">Last</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">application</span> <span class="k">is</span> <span class="n">Client</span> <span class="n">site</span><span class="p">,</span> <span class="k">where</span> <span class="n">Instance</span> <span class="n">of</span> <span class="n">the</span> <span class="n">proxy</span> <span class="k">is</span> <span class="n">created</span> <span class="n">and</span> <span class="nf">GetData</span><span class="p">()</span> <span class="n">method</span> <span class="k">is</span> <span class="n">called</span><span class="p">.</span>
 
-<p>~~~ c#  class Program
-{
-  static void Main(string[] args)
-  {
-     EquipmentProxy proxy = new EquipmentProxy();
-     Console.WriteLine("Data from Proxy: "+ proxy.GetData());</p>
+<span class="p">~~~</span> <span class="n">c</span><span class="err">#</span>  <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">EquipmentProxy</span> <span class="n">proxy</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EquipmentProxy</span><span class="p">();</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Data</span> <span class="k">from</span> <span class="n">Proxy</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;+</span> <span class="n">proxy</span><span class="p">.</span><span class="nf">GetData</span><span class="p">());</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> Console.ReadKey();   } }~~~ 
+     <span class="n">Console</span><span class="p">.</span><span class="nf">ReadKey</span><span class="p">();</span>
+  <span class="p">}</span>
 </code></pre>
 </div>
 
