@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-prototype-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -173,39 +173,39 @@
 <h2>Prototype</h2>
 <p>First thing to do is the interface that will be implemented by concrete class. This is an interface which is used for the types of object that can be cloned itself.</p>
 
-<p>[code language=”csharp”]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">AbstractEnemy</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">_id</span><span class="p">;</span>
 
-<p>public abstract class AbstractEnemy
-{
-  int _id;</p>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span>
+  <span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_id</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">set</span> <span class="p">{</span> <span class="n">_id</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">abstract</span> <span class="n">AbstractEnemy</span> <span class="nf">Clone</span><span class="p">();</span>
+<span class="p">}</span>
 
-<p>public int Id
-  {
-    get { return _id; }
-    set { _id = value; }
-  }
-  public abstract AbstractEnemy Clone();
-}</p>
-
-<p>[/code]</p>
+</code></pre>
+</div>
 
 <p>This time implementation will be very simple thank to the MemberwiseClone() method.</p>
 
-<p>[code language=”csharp”]</p>
-
-<p>class Enemy : AbstractEnemy
-{
-  public override AbstractEnemy Clone()
-  {
-      Console.WriteLine("cloning enemy…");
-      return this.MemberwiseClone() as AbstractEnemy;
-  }
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Enemy</span> <span class="p">:</span> <span class="n">AbstractEnemy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="n">AbstractEnemy</span> <span class="nf">Clone</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">cloning</span> <span class="n">enemy</span><span class="p">...&amp;</span><span class="n">quot</span><span class="p">;);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nf">MemberwiseClone</span><span class="p">()</span> <span class="k">as</span> <span class="n">AbstractEnemy</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>One last thing to create is the Client Class that will create instance of an enemy and perform the cloning procedure.</p>
 <h2>Client</h2>
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 static void Main(string[] args)
 {
    Enemy enemy = new Enemy();
@@ -217,7 +217,7 @@ static void Main(string[] args)
 
 <p>Console.WriteLine("Enemy Copy ID: " + clonedEnemy.Id.ToString());
  }
- }[/code]</p>
+ }~~~</p>
 
 <p> </p>
 <h3>Difference between Shadow and Deep Cloning</h3>
@@ -235,7 +235,7 @@ static void Main(string[] args)
 
 <p> </p>
 
-<p>[code language=”csharp”]</p>
+<p>~~~ c#</p>
 
 <p>public override AbstractEnemy Clone()
  {
@@ -243,7 +243,7 @@ static void Main(string[] args)
     cloned.Equipment = new Equipment();
     cloned.Equipment.Armor = this.Equipment.Armor;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> return cloned as AbstractEnemy;  }[/code]
+<div class="highlighter-rouge"><pre class="highlight"><code> return cloned as AbstractEnemy;  }~~~ 
 </code></pre>
 </div>
 
@@ -251,6 +251,10 @@ static void Main(string[] args)
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

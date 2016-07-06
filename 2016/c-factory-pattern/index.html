@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-factory-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -181,17 +181,17 @@
 
 <p>First let’s create Interface that will be shared between all enemies that can be crated with Factory. This will be used by client.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 public interface IFactory
 {
   void Demage(int dmg);
-}[/code]</p>
+}~~~</p>
 
 <p> </p>
 
 <p>Now we need to create Classes that will inherit this interface. In my example this will be enemyType1 and 2.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 public class EnemyType1 : IFactory
 {
   int _health=100;
@@ -210,21 +210,21 @@ public class EnemyType1 : IFactory
      _health -= dmg;
      Console.WriteLine("EnemyType2 health:" + _health.ToString());
   }
-}[/code]
+}~~~ 
 Both classes also contains health count, just to make it more interesting.</p>
 
 <p>Next we need to create the Interface for factory itself.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 public abstract class EnemyFactory
 {
   public abstract IFactory InstantiateEnemy(int type);
-}[/code]
+}~~~ 
 As a return type we use interface IFactory, this way we can return any object that inherits from it.</p>
 
 <p>In The factory Class we override the method with switch statement that will return the objects based on the input number.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 public class InstantiateEnemyFactory : EnemyFactory
 {
   public override IFactory InstantiateEnemy(int type)
@@ -239,13 +239,13 @@ public class InstantiateEnemyFactory : EnemyFactory
            throw new ApplicationException(string.Format("Wrong number"));
      }
   }
-}[/code]</p>
+}~~~</p>
 
 <p> </p>
 
 <p>Last step is to create client that will use the factory class.</p>
 
-<p>[code language=”csharp”]
+<p>~~~ c#<br />
 class Program
 {
   static void Main(string[] args)
@@ -266,7 +266,7 @@ class Program
 <p>Console.ReadKey();</p>
 
 <p>}
-}[/code]
+}~~~ 
 Numbers don’t have to be random. I’m using random numbers to demonstrate the example. I real world we would rather create a list of enemies rather than choosing name for each of them.</p>
 
 <p>This patters is very simple and effective. This makes it commonly used across all languages. To conclude, Factory defines an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. I hope you found it useful and you will implement this pattern to your next project. Stay Awesome!</p>
@@ -285,6 +285,10 @@ Numbers don’t have to be random. I’m using random numbers to demonstrate the
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

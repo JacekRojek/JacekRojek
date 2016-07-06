@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/achievements-system/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -177,74 +177,74 @@
 
 <p>First lets create an Event Manager for passing messages between button and Achievement panel. I described process of creating this in previous post, <a href="https://indiedevart.wordpress.com/2016/06/07/unity-eventmanager/">here</a>.</p>
 
-<p>[code language=”csharp”]
-using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
-using System.Collections.Generic;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.Events</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 
-<p>public class EventManager : MonoBehaviour {
-private Dictionary&lt;string, UnityEvent&gt; eventDictionary;
-private static EventManager eventManager;
-public static EventManager instance
-{
-  get
-  {
-     if (!eventManager)
-     {
-         eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
-         eventManager.Init();
-     }
-     return eventManager;
-   }
- }</p>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EventManager</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+<span class="k">private</span> <span class="n">Dictionary</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">,</span> <span class="n">UnityEvent</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">eventDictionary</span><span class="p">;</span>
+<span class="k">private</span> <span class="k">static</span> <span class="n">EventManager</span> <span class="n">eventManager</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">static</span> <span class="n">EventManager</span> <span class="n">instance</span>
+<span class="p">{</span>
+  <span class="k">get</span>
+  <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(!</span><span class="n">eventManager</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="n">eventManager</span> <span class="p">=</span> <span class="nf">FindObjectOfType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">EventManager</span><span class="p">))</span> <span class="k">as</span> <span class="n">EventManager</span><span class="p">;</span>
+         <span class="n">eventManager</span><span class="p">.</span><span class="nf">Init</span><span class="p">();</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="n">eventManager</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
 
-<p>void Init()
- {
-     eventDictionary = new Dictionary&lt;string, UnityEvent&gt;();
- }</p>
+ <span class="k">void</span> <span class="nf">Init</span><span class="p">()</span>
+ <span class="p">{</span>
+     <span class="n">eventDictionary</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">,</span> <span class="n">UnityEvent</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+ <span class="p">}</span>
 
-<p>public static void StartListening(string eventName, UnityAction listener)
- {
-   //We need to crate place in memory for reference to the object
-   UnityEvent thisEvent = null;
-   if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
-   {
-       thisEvent.AddListener(listener);
-   }
-   else
-   {
-     //If there is no event with this name add new one to dictionary.
-      thisEvent = new UnityEvent();
-      thisEvent.AddListener(listener);
-      instance.eventDictionary.Add(eventName, thisEvent);
-   }
- }</p>
+ <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">StartListening</span><span class="p">(</span><span class="kt">string</span> <span class="n">eventName</span><span class="p">,</span> <span class="n">UnityAction</span> <span class="n">listener</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="c1">//We need to crate place in memory for reference to the object
+</span>   <span class="n">UnityEvent</span> <span class="n">thisEvent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="p">.</span><span class="n">eventDictionary</span><span class="p">.</span><span class="nf">TryGetValue</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="k">out</span> <span class="n">thisEvent</span><span class="p">))</span>
+   <span class="p">{</span>
+       <span class="n">thisEvent</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+     <span class="c1">//If there is no event with this name add new one to dictionary.
+</span>      <span class="n">thisEvent</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">UnityEvent</span><span class="p">();</span>
+      <span class="n">thisEvent</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+      <span class="n">instance</span><span class="p">.</span><span class="n">eventDictionary</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="n">thisEvent</span><span class="p">);</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
 
-<p>public static void StopListening(string eventName, UnityAction listener)
- {
-   UnityEvent thisEvent = null;
-   if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
-   {
-      thisEvent.RemoveListener(listener);
-   }
- }</p>
+ <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">StopListening</span><span class="p">(</span><span class="kt">string</span> <span class="n">eventName</span><span class="p">,</span> <span class="n">UnityAction</span> <span class="n">listener</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="n">UnityEvent</span> <span class="n">thisEvent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="p">.</span><span class="n">eventDictionary</span><span class="p">.</span><span class="nf">TryGetValue</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="k">out</span> <span class="n">thisEvent</span><span class="p">))</span>
+   <span class="p">{</span>
+      <span class="n">thisEvent</span><span class="p">.</span><span class="nf">RemoveListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
 
-<p>public static void TriggerEvent(string eventName)
- {
-   UnityEvent thisEvent = null;
-   if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
-   {
-       thisEvent.Invoke();
-   }
- }
-}
-[/code]</p>
+ <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">TriggerEvent</span><span class="p">(</span><span class="kt">string</span> <span class="n">eventName</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="n">UnityEvent</span> <span class="n">thisEvent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="p">.</span><span class="n">eventDictionary</span><span class="p">.</span><span class="nf">TryGetValue</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="k">out</span> <span class="n">thisEvent</span><span class="p">))</span>
+   <span class="p">{</span>
+       <span class="n">thisEvent</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">();</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>This script is attached to an empty game object called Event Manager. Now we will create an action of clicking a button and subscribe counting method to it.</p>
 
 <p>This Script is attached to UI Button, in this Script we trigger our event and also display the number of clicks an the scene.
-[code language=”csharp”]
+~~~ c#<br />
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -258,12 +258,12 @@ public class TESTClick : MonoBehaviour, IPointerDownHandler
    EventManager.TriggerEvent("buttonClicked");
    this.GetComponentInChildren&amp;lt;Text&amp;gt;().text = numberofClicks.ToString();
  }
-}[/code]</p>
+}~~~</p>
 
 <p>I’m using OnPointerDown() method to trigger the event. This method is called when player clicks the button, To use it you need to add  IPointerDownHandler <a href="https://indiedevart.wordpress.com/2016/05/27/interfaces/">Interface</a>. and <a href="https://indiedevart.wordpress.com/2016/05/15/events/">EventSystem</a> to your script.</p>
 
 <p>Now we finally have Script attached to Panel Game Object.
-[code language=”csharp”]
+~~~ c#<br />
 using UnityEngine;
 using System.Collections;</p>
 
@@ -313,7 +313,7 @@ using System.Collections;</p>
   panelAchievements.transform.localPosition = startpPos;
  }
 }
-[/code]
+~~~ 
 In this script we subscribe to the “buttonClicked” Action, And we use Coroutine to initialize panel movement without using Update() Method. Linear transition is described in detains in my previous post, <a href="https://indiedevart.wordpress.com/2016/06/06/unity-linear-interpolation/">here</a>. In this example I have fixed start and end position which will be changed later.</p>
 
 <p>This method works well for one achievement, but to use more of them in efficient way we need to upgrade the code. In next Part I’ll show you how to read the JSON files to change the text and image an the achievement panel. In future article I’ll show you how to create separate scene for achievements where all achievements will be stored, and unlocked achievements will be highlighted after unlocking. To do this I’ll use Dictionary and List collections. If you have any questions ask in comments or message me on <a href="https://www.facebook.com/jacek.rojek.7">Facebook</a>. Stay Awesome!</p>
@@ -326,6 +326,10 @@ In this script we subscribe to the “buttonClicked” Action, And we use Corou
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-command-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -181,109 +181,109 @@
 <h2>Receiver</h2>
 <p>Lets start by creating interface for Enemies. Every enemy that implements this interface can either take damage, heal, and Turn Buff OFF and ON.</p>
 
-<p>[code language=”csharp”]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">interface</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="kt">string</span> <span class="nf">Damage</span><span class="p">();</span>
+  <span class="kt">string</span> <span class="nf">Heal</span><span class="p">();</span>
+  <span class="kt">string</span> <span class="nf">BuffON</span><span class="p">();</span>
+  <span class="kt">string</span> <span class="nf">BuffOFF</span><span class="p">();</span>
+<span class="p">}~~~</span> 
 
-<p>interface IEnemy
-{
-  string Damage();
-  string Heal();
-  string BuffON();
-  string BuffOFF();
-}[/code]</p>
+<span class="n">Each</span> <span class="n">method</span> <span class="n">will</span> <span class="k">return</span> <span class="n">a</span> <span class="kt">string</span> <span class="n">with</span> <span class="n">massage</span> <span class="n">about</span> <span class="n">current</span> <span class="n">status</span><span class="p">.</span>
 
-<p>Each method will return a string with massage about current status.</p>
+<span class="n">Here</span> <span class="k">is</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="k">interface</span> <span class="k">in</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Enemy</span> <span class="n">Class</span><span class="p">.</span> <span class="n">Second</span> <span class="n">One</span> <span class="k">is</span> <span class="n">very</span> <span class="n">similar</span> <span class="n">and</span> <span class="n">you</span> <span class="n">can</span> <span class="n">find</span> <span class="n">it</span> <span class="k">in</span> <span class="n">source</span> <span class="n">code</span><span class="p">.</span>
 
-<p>Here is implementation of the interface in one of the Enemy Class. Second One is very similar and you can find it in source code.</p>
+<span class="p">~~~</span> <span class="n">c</span><span class="err">#</span>  
 
-<p>[code language=”csharp”]</p>
+<span class="k">class</span> <span class="nc">Goblin</span> <span class="p">:</span> <span class="n">IEnemy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">BuffOFF</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Goblin</span> <span class="n">enters</span> <span class="n">the</span> <span class="n">field</span><span class="p">-</span><span class="n">Buff</span> <span class="k">is</span> <span class="n">ON</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>class Goblin : IEnemy
-{
-  public string BuffOFF()
-  {
-    return "Goblin enters the field-Buff is ON";
-  }</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">BuffON</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Goblin</span> <span class="n">exits</span> <span class="n">the</span> <span class="n">field</span><span class="p">-</span><span class="n">Buff</span> <span class="k">is</span> <span class="n">OFF</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public string BuffON()
-  {
-    return "Goblin exits the field-Buff is OFF";
-  }</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">Damage</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Goblin</span> <span class="n">exits</span> <span class="n">the</span> <span class="n">field</span><span class="p">-</span> <span class="n">takes</span> <span class="n">damage</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public string Damage()
-  {
-    return "Goblin exits the field- takes damage";
-  }</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">Heal</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Goblin</span> <span class="n">enters</span> <span class="n">the</span> <span class="n">field</span><span class="p">-</span> <span class="n">heals</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public string Heal()
-  {
-     return "Goblin enters the field- heals";
-  }</p>
-
-<p>[/code]</p>
+</code></pre>
+</div>
 <h2>Command</h2>
 <p>This interface will specify how retriever will respond to execute()and undo() commands.</p>
 
-<p>[code language=”csharp”]
-interface ICommand
-{
-  void Execute();
-  void UnDo();
-} [/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">interface</span> <span class="n">ICommand</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">Execute</span><span class="p">();</span>
+  <span class="k">void</span> <span class="nf">UnDo</span><span class="p">();</span>
+<span class="p">}</span> <span class="p">~~~</span> 
 
-<p>implementation of this interface requires a instance of an IEnemy receiver, in class constructor we pass the receiver that will be manipulated by the command. Again I’m showing here just one of two Classes, because both are identical.</p>
+<span class="n">implementation</span> <span class="n">of</span> <span class="k">this</span> <span class="k">interface</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">an</span> <span class="n">IEnemy</span> <span class="n">receiver</span><span class="p">,</span> <span class="k">in</span> <span class="k">class</span> <span class="nc">constructor</span> <span class="n">we</span> <span class="n">pass</span> <span class="n">the</span> <span class="n">receiver</span><span class="err"> </span><span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">manipulated</span> <span class="k">by</span> <span class="n">the</span> <span class="n">command</span><span class="p">.</span> <span class="n">Again</span> <span class="n">I</span><span class="err">'</span><span class="n">m</span> <span class="n">showing</span> <span class="n">here</span> <span class="n">just</span> <span class="n">one</span> <span class="n">of</span> <span class="n">two</span> <span class="n">Classes</span><span class="p">,</span> <span class="n">because</span> <span class="n">both</span> <span class="n">are</span> <span class="n">identical</span><span class="p">.</span>
 
-<p>[code language=”csharp”]</p>
+<span class="p">~~~</span> <span class="n">c</span><span class="err">#</span>  
 
-<p>class Heal : ICommand
-{
-  IEnemy _receiver;
-  // Constructor
-  public Heal(IEnemy receiver)
-  {
-    _receiver = receiver;
-  }</p>
+<span class="k">class</span> <span class="nc">Heal</span> <span class="p">:</span> <span class="n">ICommand</span>
+<span class="p">{</span>
+  <span class="n">IEnemy</span> <span class="n">_receiver</span><span class="p">;</span>
+  <span class="c1">// Constructor
+</span>  <span class="k">public</span> <span class="nf">Heal</span><span class="p">(</span><span class="n">IEnemy</span> <span class="n">receiver</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_receiver</span> <span class="p">=</span> <span class="n">receiver</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>public void Execute()
-  {
-    Console.WriteLine(_receiver.Heal());
-  }
-  public void UnDo()
-  {
-    Console.WriteLine(_receiver.Damage());
-  }
-}
-[/code]</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">_receiver</span><span class="p">.</span><span class="nf">Heal</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">UnDo</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">_receiver</span><span class="p">.</span><span class="nf">Damage</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 <h2>Invoker</h2>
 <p>In my example i’m simulating situation when enemy enters the field on the map, that triggers the commands. In the invoker we pass instance of command that we want to execute.</p>
 
-<p>[code language=”csharp”]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Field</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">ICommand</span> <span class="n">_command</span><span class="p">;</span>
 
-<p>class Field
-{
-  private ICommand _command;</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">SetCommand</span><span class="p">(</span><span class="n">ICommand</span> <span class="n">command</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">_command</span> <span class="p">=</span> <span class="n">command</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>public void SetCommand(ICommand command)
-  {
-    this._command = command;
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">EnterField</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="n">_command</span><span class="p">.</span><span class="nf">Execute</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">ExitField</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="n">_command</span><span class="p">.</span><span class="nf">UnDo</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>public void EnterField()
-  {
-  _command.Execute();
-  }
-  public void ExitField()
-  {
-  _command.UnDo();
-  }
-}</p>
-
-<p>[/code]</p>
+</code></pre>
+</div>
 <h2>Client</h2>
 <p>This is the last part of the program that connect everything together. In this specific example I chose the situation when Enemy Goblin Enters the Field, what trigger the Heal command. After leaving the field Goblin Takes Damage.</p>
 
-<p>[code language=”csharp”]</p>
+<p>~~~ c#</p>
 
 <p>static void Main()
 {
@@ -298,12 +298,16 @@ interface ICommand
   invoker.ExitField();</p>
 
 <p>Console.ReadKey();
-}[/code]</p>
+}~~~</p>
 
 <p>This was just a simple demonstration of the pattern, one way of extending the functionality of it is to store command in the generic list, this way we can undo multiple commands or execute command already executed in the past. I hope you like will find it useful. In my next article I’ll cover on of the last design patters. Stay Awesome!</p>
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

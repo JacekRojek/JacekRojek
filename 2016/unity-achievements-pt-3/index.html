@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/unity-achievements-pt-3/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -203,103 +203,103 @@
 
 <p>Now Add buttons to bots scenes and make them change between scenes. Use the following method. Remember to add scenes to build settings.</p>
 
-<p>[code language=”csharp”]
-public void LoadLevel(int i)
-{
-  Application.LoadLevel(i);
-}
-[/code]
-Attach Script with this method to a button on the scene, and select the scene number;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">void</span> <span class="nf">LoadLevel</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Application</span><span class="p">.</span><span class="nf">LoadLevel</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Attach Script with this method to a button on the scene, and select the scene number;</p>
 
 <p><img class="alignnone size-full wp-image-2345" src="https://indiedevart.files.wordpress.com/2016/06/capture4.png" alt="Capture4" width="372" height="86" /></p>
 
 <p>Now Let’s create a scrip that will create achievements panels, and check if achievement is is unlocked.</p>
 
-<p>[code language=”csharp”]
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using LitJson;
-using System.IO;
-using UnityEngine.UI;
-public class PanelWithAchievements : MonoBehaviour {</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">LitJson</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PanelWithAchievements</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
 
-<p>public static Dictionary&lt;string, bool&gt; achievements = new Dictionary&lt;string, bool&gt;();
- private static bool DictCreated=false;
- private List&lt;Database_Achievements.Achievement&gt; databaseAchievements;
- private JsonData AchData;
- public GameObject achPanel;</p>
+ <span class="k">public</span> <span class="k">static</span> <span class="n">Dictionary</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">achievements</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+ <span class="k">private</span> <span class="k">static</span> <span class="kt">bool</span> <span class="n">DictCreated</span><span class="p">=</span><span class="k">false</span><span class="p">;</span>
+ <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Database_Achievements</span><span class="p">.</span><span class="n">Achievement</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">databaseAchievements</span><span class="p">;</span>
+ <span class="k">private</span> <span class="n">JsonData</span> <span class="n">AchData</span><span class="p">;</span>
+ <span class="k">public</span> <span class="n">GameObject</span> <span class="n">achPanel</span><span class="p">;</span>
 
-<p>void Start()
-  {
-  Debug.Log("DictCreated" + DictCreated);
-  databaseAchievements = Database_Achievements.databaseAchievements;
-//Create Panels based on database items.
-  InstntiatePanels();
-//Set them all to locked as a default
-  foreach (var kvp in achievements)
-  {
-     GameObject achievement = this.transform.FindChild(kvp.Key).gameObject;
-     achievement.transform.FindChild("Panel").gameObject.SetActive(true);
-  }
-//This will highlight unlocked achievements
-  UpdateBoard();</p>
+  <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">DictCreated</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">+</span> <span class="n">DictCreated</span><span class="p">);</span>
+  <span class="n">databaseAchievements</span> <span class="p">=</span> <span class="n">Database_Achievements</span><span class="p">.</span><span class="n">databaseAchievements</span><span class="p">;</span>
+<span class="c1">//Create Panels based on database items.
+</span>  <span class="nf">InstntiatePanels</span><span class="p">();</span>
+<span class="c1">//Set them all to locked as a default
+</span>  <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">kvp</span> <span class="k">in</span> <span class="n">achievements</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">GameObject</span> <span class="n">achievement</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">FindChild</span><span class="p">(</span><span class="n">kvp</span><span class="p">.</span><span class="n">Key</span><span class="p">).</span><span class="n">gameObject</span><span class="p">;</span>
+     <span class="n">achievement</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">FindChild</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Panel</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;).</span><span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="c1">//This will highlight unlocked achievements
+</span>  <span class="nf">UpdateBoard</span><span class="p">();</span>
 
-<p>}</p>
+  <span class="p">}</span>
 
-<p>void InstntiatePanels()
-  {
-  if (this.transform.childCount==0)
-{
-     foreach (Database_Achievements.Achievement ach in databaseAchievements)
-     {
-         GameObject newach = Instantiate(achPanel);
-         newach.transform.SetParent(this.transform);
-         newach.name = ach.Title;
-         newach.transform.GetChild(2).GetComponent&amp;lt;Image&amp;gt;().sprite = ach.image;
-         newach.transform.GetChild(0).GetComponent&amp;lt;Text&amp;gt;().text = ach.Title;
-         newach.transform.GetChild(1).GetComponent&amp;lt;Text&amp;gt;().text = ach.Describtion;
-//Condition for adding only new items
-         if (!achievements.ContainsKey(ach.Title))
-         {
-             achievements.Add(ach.Title, false);
-         }
-      }
-    }
-   }
-void UpdateBoard()
-   {
-     foreach (var kvp in achievements)
-     {
-         if (kvp.Value == true)
-         {
-             GameObject achievement = this.transform.FindChild(kvp.Key).gameObject;
-             achievement.transform.FindChild("Panel").gameObject.SetActive(false);
-          }
-      }
-   }
-}
-[/code]
-I’m using dictionary to store the state of an achievement and i am using name as a key.
+  <span class="k">void</span> <span class="nf">InstntiatePanels</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">childCount</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+     <span class="k">foreach</span> <span class="p">(</span><span class="n">Database_Achievements</span><span class="p">.</span><span class="n">Achievement</span> <span class="n">ach</span> <span class="k">in</span> <span class="n">databaseAchievements</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="n">GameObject</span> <span class="n">newach</span> <span class="p">=</span> <span class="nf">Instantiate</span><span class="p">(</span><span class="n">achPanel</span><span class="p">);</span>
+         <span class="n">newach</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">SetParent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span>
+         <span class="n">newach</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">Title</span><span class="p">;</span>
+         <span class="n">newach</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">2</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span><span class="n">Image</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">gt</span><span class="p">;().</span><span class="n">sprite</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">image</span><span class="p">;</span>
+         <span class="n">newach</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span><span class="n">Text</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">gt</span><span class="p">;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">Title</span><span class="p">;</span>
+         <span class="n">newach</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">GetChild</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span><span class="n">Text</span><span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">gt</span><span class="p">;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">ach</span><span class="p">.</span><span class="n">Describtion</span><span class="p">;</span>
+<span class="c1">//Condition for adding only new items
+</span>         <span class="k">if</span> <span class="p">(!</span><span class="n">achievements</span><span class="p">.</span><span class="nf">ContainsKey</span><span class="p">(</span><span class="n">ach</span><span class="p">.</span><span class="n">Title</span><span class="p">))</span>
+         <span class="p">{</span>
+             <span class="n">achievements</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">ach</span><span class="p">.</span><span class="n">Title</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+   <span class="p">}</span>
+<span class="k">void</span> <span class="nf">UpdateBoard</span><span class="p">()</span>
+   <span class="p">{</span>
+     <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">kvp</span> <span class="k">in</span> <span class="n">achievements</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">kvp</span><span class="p">.</span><span class="n">Value</span> <span class="p">==</span> <span class="k">true</span><span class="p">)</span>
+         <span class="p">{</span>
+             <span class="n">GameObject</span> <span class="n">achievement</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">FindChild</span><span class="p">(</span><span class="n">kvp</span><span class="p">.</span><span class="n">Key</span><span class="p">).</span><span class="n">gameObject</span><span class="p">;</span>
+             <span class="n">achievement</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">FindChild</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Panel</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;).</span><span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>I’m using dictionary to store the state of an achievement and i am using name as a key.
 This scrip is attached to a panel object on new scene.</p>
 
 <p>In our AchievementPanel Scrip from previous part we add one extra line in CountClicks() Method</p>
 
-<p>[code language=”csharp”]
-void CountClicks()
-{
- numberOfClicks++;
- if (numberOfClicks &amp;gt;= 10 &amp;amp;&amp;amp; !achievement01Unlocked)
- {
-   PassInformations(1);
-   StartCoroutine(PanelCall());
-   achievement01Unlocked = true;
-//This one here
-   PanelWithAchievements.achievements["Explorer"] = true;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">void</span> <span class="nf">CountClicks</span><span class="p">()</span>
+<span class="p">{</span>
+ <span class="n">numberOfClicks</span><span class="p">++;</span>
+ <span class="k">if</span> <span class="p">(</span><span class="n">numberOfClicks</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">gt</span><span class="p">;=</span> <span class="m">10</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">amp</span><span class="p">;&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">amp</span><span class="p">;</span> <span class="p">!</span><span class="n">achievement01Unlocked</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="nf">PassInformations</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+   <span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">PanelCall</span><span class="p">());</span>
+   <span class="n">achievement01Unlocked</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="c1">//This one here
+</span>   <span class="n">PanelWithAchievements</span><span class="p">.</span><span class="n">achievements</span><span class="p">[&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Explorer</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;]</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
 
-<p>}
-}
-[/code]</p>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
@@ -313,24 +313,24 @@ void CountClicks()
 
 <p>To Avoid creating new panels every time site loads. We need to include one condition in Database script.</p>
 
-<p>[code language=”csharp”]
-if (databaseAchievements.Count==0)
-[/code]
-This will prevent creating too many objects.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">databaseAchievements</span><span class="p">.</span><span class="n">Count</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
+</code></pre>
+</div>
+<p>This will prevent creating too many objects.</p>
 
-<p>[code language=”csharp”]
- void ConstructItemDatabase()
- {
-     if (databaseAchievements.Count==0)
-{
-       for (int i = 0; i &amp;lt; AchData.Count; i++)
-       {
-databaseAchievements.Add(new Achievement((int)AchData[i]["ID"], AchData[i]["Title"].ToString(), AchData[i]["Description"].ToString()));
-       }
-     Debug.Log("Database Created");
-     }
- }
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code> <span class="k">void</span> <span class="nf">ConstructItemDatabase</span><span class="p">()</span>
+ <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">databaseAchievements</span><span class="p">.</span><span class="n">Count</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+       <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span> <span class="n">AchData</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+       <span class="p">{</span>
+<span class="n">databaseAchievements</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">Achievement</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">ID</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;],</span> <span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Title</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;].</span><span class="nf">ToString</span><span class="p">(),</span> <span class="n">AchData</span><span class="p">[</span><span class="n">i</span><span class="p">][&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Description</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;].</span><span class="nf">ToString</span><span class="p">()));</span>
+       <span class="p">}</span>
+     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Database</span> <span class="n">Created</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
@@ -350,6 +350,10 @@ databaseAchievements.Add(new Achievement((int)AchData[i]["ID"], AchData[i]["Titl
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-iterator-design-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -175,15 +175,15 @@
 
 <p>Let’s start by creating interface for IIterator. Iterator Interface defines an interface for accessing and traversing elements.</p>
 
-<p>[code language=”csharp”]
-interface IIterator
-{
-  int FirstItem { get; }
-  int NextItem { get; }
-  int CurrentItem { get; }
-  bool IsDone { get; }
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">interface</span> <span class="n">IIterator</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">FirstItem</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">NextItem</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">CurrentItem</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">IsDone</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>This will simulate looping through the objects of collection.</p>
 
@@ -191,164 +191,165 @@ interface IIterator
 
 <p>Return value is set to int in Aggregate for this example.</p>
 
-<p>[code language=”csharp”]
-class Iterator : IIterator
-{
-  IAggregate aggregate = null;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Iterator</span> <span class="p">:</span> <span class="n">IIterator</span>
+<span class="p">{</span>
+  <span class="n">IAggregate</span> <span class="n">aggregate</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
-<p>//We need an index to track the iteration process
-  int currentIndex = 0;</p>
+  <span class="c1">//We need an index to track the iteration process
+</span>  <span class="kt">int</span> <span class="n">currentIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 
-<p>public Iterator(IAggregate newAggregate)
-  {
-    aggregate = newAggregate;
-  }
-  //Returns item with index 0
-  public int FirstItem
-  {
-    get
-    {
-      currentIndex = 0;
-      return aggregate[currentIndex];
-    }
-  }</p>
+  <span class="k">public</span> <span class="nf">Iterator</span><span class="p">(</span><span class="n">IAggregate</span> <span class="n">newAggregate</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">aggregate</span> <span class="p">=</span> <span class="n">newAggregate</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//Returns item with index 0
+</span>  <span class="k">public</span> <span class="kt">int</span> <span class="n">FirstItem</span>
+  <span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+      <span class="n">currentIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">aggregate</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<p>//Returns next item
-  public int NextItem
-  {
-   get
-   {
-     currentIndex += 1;</p>
+  <span class="c1">//Returns next item
+</span>  <span class="k">public</span> <span class="kt">int</span> <span class="n">NextItem</span>
+  <span class="p">{</span>
+   <span class="k">get</span>
+   <span class="p">{</span>
+     <span class="n">currentIndex</span> <span class="p">+=</span> <span class="m">1</span><span class="p">;</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> if (IsDone == false)
- {
-   return aggregate[currentIndex];
- }
- else
- {
-   return -1;
- }
-}   }
+     <span class="k">if</span> <span class="p">(</span><span class="n">IsDone</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="k">return</span> <span class="n">aggregate</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">];</span>
+     <span class="p">}</span>
+     <span class="k">else</span>
+     <span class="p">{</span>
+       <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+     <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">CurrentItem</span>
+  <span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+       <span class="k">return</span> <span class="n">aggregate</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="c1">//This method will give us feedabck when iteration ended
+</span>  <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDone</span>
+  <span class="p">{</span>
+     <span class="k">get</span>
+     <span class="p">{</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">currentIndex</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">aggregate</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
+       <span class="p">{</span>
+          <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+       <span class="p">}</span>
+       <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
 </code></pre>
 </div>
-
-<p>public int CurrentItem
-  {
-    get
-    {
-       return aggregate[currentIndex];
-    }
-  }
-//This method will give us feedabck when iteration ended
-  public bool IsDone
-  {
-     get
-     {
-       if (currentIndex &lt; aggregate.Count)
-       {
-          return false;
-       }
-       return true;
-     }
-   }
- }
-[/code]</p>
 
 <p> </p>
 
 <p>Next interface to create is IAggregate.  One of the methods will return IIterator interface object.</p>
 
-<p>[code language=”csharp”]
- interface IAggregate
- {
-   IIterator GetIterator();
-   //This will handle manipulation of objects in the array
-   int this[int itemIndex] { set; get; }
-   int Count { get; }
- }
-[/code]
-Implementation of this interface in Aggregate Class will be used as a place to create a list of an object that we will iterate through.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code> <span class="k">interface</span> <span class="n">IAggregate</span>
+ <span class="p">{</span>
+   <span class="n">IIterator</span> <span class="nf">GetIterator</span><span class="p">();</span>
+   <span class="c1">//This will handle manipulation of objects in the array
+</span>   <span class="kt">int</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">itemIndex</span><span class="p">]</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+   <span class="kt">int</span> <span class="n">Count</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre>
+</div>
+<p>Implementation of this interface in Aggregate Class will be used as a place to create a list of an object that we will iterate through.</p>
 
-<p>[code language=”csharp”]
-class Aggregate : IAggregate
-{
-  //Here is why Iterator methods returns integers;
-  List&lt;int&gt; values = null;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Aggregate</span> <span class="p">:</span> <span class="n">IAggregate</span>
+<span class="p">{</span>
+  <span class="c1">//Here is why Iterator methods returns integers;
+</span>  <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">int</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">values</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
-<p>public Aggregate()
-  {
-    values = new List&lt;int&gt;();
-  }</p>
+  <span class="k">public</span> <span class="nf">Aggregate</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">values</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">int</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+  <span class="p">}</span>
 
-<p>public IIterator GetIterator()
-  {
-    //Iterator constructor takes IAggregate as parameter
-    return new Iterator(this);
-  }</p>
+  <span class="k">public</span> <span class="n">IIterator</span> <span class="nf">GetIterator</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">//Iterator constructor takes IAggregate as parameter
+</span>    <span class="k">return</span> <span class="k">new</span> <span class="nf">Iterator</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<p>public int this[int itemIndex]
-  {
-    get
-    {
-      if (itemIndex &lt; values.Count)
-       {
-           return values[itemIndex];
-       }
-      else
-      {
-        return -1;
-      }
-    }
-    set
-    {
-        values.Add(value);
-    }
-   }</p>
+  <span class="k">public</span> <span class="kt">int</span> <span class="k">this</span><span class="p">[</span><span class="kt">int</span> <span class="n">itemIndex</span><span class="p">]</span>
+  <span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">itemIndex</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">values</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
+       <span class="p">{</span>
+           <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">itemIndex</span><span class="p">];</span>
+       <span class="p">}</span>
+      <span class="k">else</span>
+      <span class="p">{</span>
+        <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">set</span>
+    <span class="p">{</span>
+        <span class="n">values</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+    <span class="p">}</span>
+   <span class="p">}</span>
 
-<p>public int Count
-   {
-     get
-     {
-       return values.Count;
-     }
-   }
- }
-[/code]</p>
+   <span class="k">public</span> <span class="kt">int</span> <span class="n">Count</span>
+   <span class="p">{</span>
+     <span class="k">get</span>
+     <span class="p">{</span>
+       <span class="k">return</span> <span class="n">values</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Last step is to create a Client that will create instance of Aggregate Class and Use Iterator to loop throug collection items.</p>
 
-<p>[code language=”csharp”]
-class Program
-{
-  static void Main(string[] args)
-  {
-    Aggregate aggr = new Aggregate();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Aggregate</span> <span class="n">aggr</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Aggregate</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>aggr[0] = 7;
-aggr[1] = 8;
-aggr[2] = 9;
-aggr[3] = 89;
+    <span class="n">aggr</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="m">7</span><span class="p">;</span>
+    <span class="n">aggr</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>
+    <span class="n">aggr</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="m">9</span><span class="p">;</span>
+    <span class="n">aggr</span><span class="p">[</span><span class="m">3</span><span class="p">]</span> <span class="p">=</span> <span class="m">89</span><span class="p">;</span>
+
+  <span class="n">IIterator</span> <span class="n">iter</span> <span class="p">=</span> <span class="n">aggr</span><span class="p">.</span><span class="nf">GetIterator</span><span class="p">();</span>
+  <span class="c1">//Loops until isDone==false
+</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="n">iter</span><span class="p">.</span><span class="n">FirstItem</span><span class="p">;</span> <span class="n">iter</span><span class="p">.</span><span class="n">IsDone</span> <span class="p">==</span> <span class="k">false</span><span class="p">;</span> <span class="n">i</span> <span class="p">=</span> <span class="n">iter</span><span class="p">.</span><span class="n">NextItem</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+    <span class="p">}</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
-
-<p>IIterator iter = aggr.GetIterator();
-  //Loops until isDone==false
-    for (int i = iter.FirstItem; iter.IsDone == false; i = iter.NextItem)
-    {
-       Console.WriteLine(i.ToString());
-    }
-  Console.ReadLine();
-  }
-}
-[/code]
-To conclude, Iteration pattern provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation. In C# this can be handled just by implementing IEnumerable interface. I hope you learned something new today. In Next article I’ll cover one last design patterns. Stay Awesome!</p>
+<p>To conclude, Iteration pattern provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation. In C# this can be handled just by implementing IEnumerable interface. I hope you learned something new today. In Next article I’ll cover one last design patterns. Stay Awesome!</p>
 
 <p>PS: Thanks for all Up votes On <a href="https://www.reddit.com/">Reddit.com</a>! I can’t reply to  comments, because of shadow-ban :D</p>
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-enumerations/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -168,58 +168,62 @@
 
 <p>enum Syntax:</p>
 
-<p>[code language=”csharp”]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">enum</span> <span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">enum_name</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span> <span class="n">enumeration</span> <span class="n">list</span> <span class="p">};</span>
 
-<p>enum &lt;enum_name&gt; { enumeration list };</p>
-
-<p>[/code]</p>
+</code></pre>
+</div>
 <p class="prettyprint notranslate prettyprinted"><span class="pun"> </span></p>
 <p>This can be written i one line as i will show you later.</p>
 
 <p>Lats take a look at example i came up with. In this Program i have an Enemy class that contains type of enemy and behaviour. For both of the properties i create a enum that list all possible options. This way I’m sure that constructor will pass only the type i listed in Class declaration.</p>
 
-<p>[code language=”csharp”]
- enum Behaviour { Agressive, Neutral, Friendly }
- enum Type { Skeleton, Vampire, Ghoul }
- class Program
- {
-   static void Main(string[] args)
-   {
-     Enemy[] enemies= new Enemy[3];
-     enemies[0] = new Enemy(Type.Ghoul, Behaviour.Agressive);
-     enemies[1] = new Enemy(Type.Skeleton, Behaviour.Neutral);
-     enemies[2] = new Enemy(Type.Vampire, Behaviour.Friendly);</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code> <span class="k">enum</span> <span class="n">Behaviour</span> <span class="p">{</span> <span class="n">Agressive</span><span class="p">,</span> <span class="n">Neutral</span><span class="p">,</span> <span class="n">Friendly</span> <span class="p">}</span>
+ <span class="k">enum</span> <span class="n">Type</span> <span class="p">{</span> <span class="n">Skeleton</span><span class="p">,</span> <span class="n">Vampire</span><span class="p">,</span> <span class="n">Ghoul</span> <span class="p">}</span>
+ <span class="k">class</span> <span class="nc">Program</span>
+ <span class="p">{</span>
+   <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="n">Enemy</span><span class="p">[]</span> <span class="n">enemies</span><span class="p">=</span> <span class="k">new</span> <span class="n">Enemy</span><span class="p">[</span><span class="m">3</span><span class="p">];</span>
+     <span class="n">enemies</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">(</span><span class="n">Type</span><span class="p">.</span><span class="n">Ghoul</span><span class="p">,</span> <span class="n">Behaviour</span><span class="p">.</span><span class="n">Agressive</span><span class="p">);</span>
+     <span class="n">enemies</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">(</span><span class="n">Type</span><span class="p">.</span><span class="n">Skeleton</span><span class="p">,</span> <span class="n">Behaviour</span><span class="p">.</span><span class="n">Neutral</span><span class="p">);</span>
+     <span class="n">enemies</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Enemy</span><span class="p">(</span><span class="n">Type</span><span class="p">.</span><span class="n">Vampire</span><span class="p">,</span> <span class="n">Behaviour</span><span class="p">.</span><span class="n">Friendly</span><span class="p">);</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> foreach (Enemy e in enemies)
- {
-    e.Print();
- }
- Console.ReadLine();    }  } class Enemy  {    Type type;    Behaviour behaviour; 
+     <span class="k">foreach</span> <span class="p">(</span><span class="n">Enemy</span> <span class="n">e</span> <span class="k">in</span> <span class="n">enemies</span><span class="p">)</span>
+     <span class="p">{</span>
+        <span class="n">e</span><span class="p">.</span><span class="nf">Print</span><span class="p">();</span>
+     <span class="p">}</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="k">class</span> <span class="nc">Enemy</span>
+ <span class="p">{</span>
+   <span class="n">Type</span> <span class="n">type</span><span class="p">;</span>
+   <span class="n">Behaviour</span> <span class="n">behaviour</span><span class="p">;</span> 
+
+   <span class="k">public</span> <span class="nf">Enemy</span><span class="p">(</span><span class="n">Type</span> <span class="n">_type</span><span class="p">,</span><span class="n">Behaviour</span> <span class="n">_behaviour</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">type</span> <span class="p">=</span> <span class="n">_type</span><span class="p">;</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">behaviour</span> <span class="p">=</span> <span class="n">_behaviour</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Print</span><span class="p">()</span>
+   <span class="p">{</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">behaviour</span><span class="p">.</span><span class="nf">ToString</span><span class="p">()+&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;+</span> <span class="n">type</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+   <span class="p">}</span>
+
+ <span class="p">}</span>
 </code></pre>
 </div>
 
-<p>public Enemy(Type _type,Behaviour _behaviour)
-   {
-     this.type = _type;
-     this.behaviour = _behaviour;
-   }
-public void Print()
-   {
-      Console.WriteLine(behaviour.ToString()+" "+ type.ToString());
-   }</p>
-
-<p>}
-[/code]</p>
-
 <p>Enums are using integer values as a default value. We can convert the Selected type to an integer. We can overwrite the Print method like this.</p>
 
-<p>[code language=”csharp”]</p>
-
-<p>public void Print()
-{
-Console.WriteLine((int)behaviour+" "+ (int)type);
-}
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Print</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">behaviour</span><span class="p">+&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">type</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>The output will be</p>
 <pre>0   2
@@ -231,18 +235,18 @@ Console.WriteLine((int)behaviour+" "+ (int)type);
 
 <p>Enums allows to assign values to the elements in the definition. Values of elements after the one that have assigned value will be incremented by one</p>
 
-<p>[code language=”csharp”]
-//Result values: 4,5,6
-enum Behaviour { Agressive=4, Neutral, Friendly }
-// Result, values 0,7,8
-enum Type { Skeleton, Vampire=7, Ghoul }
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="c1">//Result values: 4,5,6
+</span><span class="k">enum</span> <span class="n">Behaviour</span> <span class="p">{</span> <span class="n">Agressive</span><span class="p">=</span><span class="m">4</span><span class="p">,</span> <span class="n">Neutral</span><span class="p">,</span> <span class="n">Friendly</span> <span class="p">}</span>
+<span class="c1">// Result, values 0,7,8
+</span><span class="k">enum</span> <span class="n">Type</span> <span class="p">{</span> <span class="n">Skeleton</span><span class="p">,</span> <span class="n">Vampire</span><span class="p">=</span><span class="m">7</span><span class="p">,</span> <span class="n">Ghoul</span> <span class="p">}</span>
+</code></pre>
+</div>
 
 <p>You can change the variable type, from default integer to almost  anything else.</p>
 
-<p>[code language=”csharp”]
-enum Behaviour : Byte { Agressive=12, Neutral, Friendly }
-[/code]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">enum</span> <span class="n">Behaviour</span> <span class="p">:</span> <span class="n">Byte</span> <span class="p">{</span> <span class="n">Agressive</span><span class="p">=</span><span class="m">12</span><span class="p">,</span> <span class="n">Neutral</span><span class="p">,</span> <span class="n">Friendly</span> <span class="p">}</span>
+</code></pre>
+</div>
 
 <p>The approved types for an enum are <strong>byte</strong>, <a href="https://msdn.microsoft.com/en-gb/library/d86he86x.aspx">sbyte</a>, <a href="https://msdn.microsoft.com/en-gb/library/ybs77ex4.aspx">short</a>, <a href="https://msdn.microsoft.com/en-gb/library/cbf1574z.aspx">ushort</a>, <a href="https://msdn.microsoft.com/en-gb/library/5kzh1b5w.aspx">int</a>, <a href="https://msdn.microsoft.com/en-gb/library/x0sksh43.aspx">uint</a>, <a href="https://msdn.microsoft.com/en-gb/library/ctetwysk.aspx">long</a>, or <a href="https://msdn.microsoft.com/en-gb/library/t98873t4.aspx">ulong</a>.</p>
 
@@ -256,6 +260,10 @@ enum Behaviour : Byte { Agressive=12, Neutral, Friendly }
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 

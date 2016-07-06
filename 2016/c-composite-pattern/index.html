@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="JacekRojek">
+  <meta name="twitter:title" content="Jacek  Rojek">
   <meta name="twitter:description" content="Software development blog">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="JacekRojek">
+  <meta property="og:title" content="Jacek  Rojek">
   <meta property="og:description" content="Software development blog">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/JacekRojek/images/favicons/apple-touch-icon-57x57.png">
@@ -44,7 +44,7 @@
 
   <link rel="stylesheet" href="/JacekRojek/css/main.css">
   <link rel="canonical" href="https://jacekrojek.github.io/JacekRojek//JacekRojek//2016/c-composite-pattern/">
-  <link rel="alternate" type="application/rss+xml" title="JacekRojek" href="/JacekRojek/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Jacek  Rojek" href="/JacekRojek/feed.xml">
 </head>
 
 
@@ -59,9 +59,9 @@
 
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="/JacekRojek/" title="link to home of JacekRojek">
+        <a href="/JacekRojek/" title="link to home of Jacek  Rojek">
           <img src="/JacekRojek/images/profile.jpg" class="user-image" alt="My Profile Photo">
-          <h1 class="panel-cover__title panel-title">JacekRojek</h1>
+          <h1 class="panel-cover__title panel-title">Jacek  Rojek</h1>
         </a>
         <hr class="panel-cover__divider">
         <p class="panel-cover__description">Software development blog</p>
@@ -71,7 +71,7 @@
 
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to JacekRojek blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/JacekRojek/#blog" title="link to Jacek  Rojek blog" class="blog-button">Blog</a></li>
             </ul>
           </nav>
 
@@ -175,61 +175,61 @@
 
 <p>First thing to create is the Component interface that will be inherited by all items in the structure.</p>
 
-<p>[code language=”csharp”]
-public interface IInventory
-{
-  string Name { get; set; }
-  void PrintName();
-}
-[/code]
-It acts as the base class for all the objects within the hierarchy. I’m creating name property for all items. you can find more about <a href="https://indiedevart.wordpress.com/2016/06/11/c-properties/">properties </a>on my recent post about it.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">interface</span> <span class="n">IInventory</span>
+<span class="p">{</span>
+  <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">void</span> <span class="nf">PrintName</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>It acts as the base class for all the objects within the hierarchy. I’m creating name property for all items. you can find more about <a href="https://indiedevart.wordpress.com/2016/06/11/c-properties/">properties </a>on my recent post about it.</p>
 
 <p>Next thing is the implementation of the interface in Backpack Class that will be used to store Items or other Backpacks. To do this You need method for adding and removing items. Objects will be stored in <a href="https://indiedevart.wordpress.com/2016/05/12/introduction-to-generics/">generic List.</a></p>
 
-<p>[code language=”csharp”]</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Backpack</span> <span class="p">:</span> <span class="n">IInventory</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IInventory</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IInventory</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">_subordinates</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IInventory</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
 
-<p>public class Backpack : IInventory, IEnumerable&lt;IInventory&gt;
-{
-  private List&lt;IInventory&gt; _subordinates = new List&lt;IInventory&gt;();</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-<p>public string Name { get; set; }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">AddSubordinate</span><span class="p">(</span><span class="n">IInventory</span> <span class="n">subordinate</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_subordinates</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">subordinate</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<p>public void AddSubordinate(IInventory subordinate)
-  {
-    _subordinates.Add(subordinate);
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveSubordinate</span><span class="p">(</span><span class="n">IInventory</span> <span class="n">subordinate</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_subordinates</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">subordinate</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<p>public void RemoveSubordinate(IInventory subordinate)
-  {
-    _subordinates.Remove(subordinate);
-  }</p>
+  <span class="k">public</span> <span class="n">IInventory</span> <span class="nf">GetSubordinate</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">_subordinates</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+  <span class="p">}</span>
 
-<p>public IInventory GetSubordinate(int index)
-  {
-    return _subordinates[index];
-  }</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">PrintName</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="n">IEnumerator</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IInventory</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nf">GetEnumerator</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">IInventory</span> <span class="n">subordinate</span> <span class="k">in</span> <span class="n">_subordinates</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">yield</span> <span class="k">return</span> <span class="n">subordinate</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<p>public void PrintName()
-  {
-    Console.WriteLine(Name);
-  }
-  public IEnumerator&lt;IInventory&gt; GetEnumerator()
-  {
-    foreach (IInventory subordinate in _subordinates)
-    {
-      yield return subordinate;
-    }
-  }</p>
+  <span class="n">IEnumerator</span> <span class="n">IEnumerable</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Next thing is  to create an object Class, this class will be used to represent single item in inventory.</p>
 
-<p>IEnumerator IEnumerable.GetEnumerator()
-  {
-    return GetEnumerator();
-  }
-}
-[/code]
-Next thing is  to create an object Class, this class will be used to represent single item in inventory.</p>
-
-<p>[code language=”csharp”] public class Item : IInventory
+<p>~~~ c#   public class Item : IInventory
 {
   public string Name { get; set; }</p>
 
@@ -237,10 +237,10 @@ Next thing is  to create an object Class, this class will be used to represent 
   {
     Console.WriteLine(Name);
   }
-}[/code]
+}~~~ 
 Last thing to do is the Client site that will create the structure based on the created Interface and Classes.</p>
 
-<p>[code language=”csharp”] class Program
+<p>~~~ c#   class Program
 {
   static void Main(string[] args)
   {
@@ -259,7 +259,7 @@ Console.WriteLine(&amp;quot;List of items in inventory&amp;quot;);
   {
      element.PrintName();
   }
-Console.ReadKey();    }  }[/code] In this example Backpack class is used to create rot object for the tree. Where new backpack and few new items are added. Thanks to implementation of IEnumerable interface we can loop through items in the backpack class.
+Console.ReadKey();    }  }~~~  In this example Backpack class is used to create rot object for the tree. Where new backpack and few new items are added. Thanks to implementation of IEnumerable interface we can loop through items in the backpack class.
 </code></pre>
 </div>
 
@@ -267,6 +267,10 @@ Console.ReadKey();    }  }[/code] In this example Backpack class is used to crea
 
   </section>
   
+  <script>
+
+</script>
+
 </article>
 
 
