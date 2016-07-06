@@ -258,7 +258,7 @@ public class TESTClick : MonoBehaviour, IPointerDownHandler
    EventManager.TriggerEvent("buttonClicked");
    this.GetComponentInChildren&amp;lt;Text&amp;gt;().text = numberofClicks.ToString();
  }
-}~~~</p>
+~~~</p>
 
 <p>I’m using OnPointerDown() method to trigger the event. This method is called when player clicks the button, To use it you need to add  IPointerDownHandler <a href="https://indiedevart.wordpress.com/2016/05/27/interfaces/">Interface</a>. and <a href="https://indiedevart.wordpress.com/2016/05/15/events/">EventSystem</a> to your script.</p>
 
@@ -313,7 +313,7 @@ using System.Collections;</p>
   panelAchievements.transform.localPosition = startpPos;
  }
 }
-~~~ 
+~~~  <br />
 In this script we subscribe to the “buttonClicked” Action, And we use Coroutine to initialize panel movement without using Update() Method. Linear transition is described in detains in my previous post, <a href="https://indiedevart.wordpress.com/2016/06/06/unity-linear-interpolation/">here</a>. In this example I have fixed start and end position which will be changed later.</p>
 
 <p>This method works well for one achievement, but to use more of them in efficient way we need to upgrade the code. In next Part I’ll show you how to read the JSON files to change the text and image an the achievement panel. In future article I’ll show you how to create separate scene for achievements where all achievements will be stored, and unlocked achievements will be highlighted after unlocking. To do this I’ll use Dictionary and List collections. If you have any questions ask in comments or message me on <a href="https://www.facebook.com/jacek.rojek.7">Facebook</a>. Stay Awesome!</p>

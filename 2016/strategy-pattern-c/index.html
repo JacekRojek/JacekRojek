@@ -183,73 +183,73 @@
 
 <p>Strategy can be implemented as Abstract Class or <a href="https://indiedevart.wordpress.com/2016/05/27/interfaces/">Interface</a>. In this example i will use abstract class. Just like this.</p>
 
-<p>~~~ c#<br />
-abstract class Strategy
-{
-  public abstract void AlgorithmInterface();
-}~~~ 
-So now we need to crate implementations of this method.</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Strategy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">AlgorithmInterface</span><span class="p">();</span>
+</code></pre>
+</div>
+<p>So now we need to crate implementations of this method.</p>
 
 <p>Each class inherits from Abstract Class and provides different implementation that will print the name of the class to the console.</p>
 
-<p>~~~ c#<br />
-class ConcreteStrategyA : Strategy
-{
-  public override void AlgorithmInterface()
-  {
-     Console.WriteLine("ConcreteStrategyA");
-  }
-}</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ConcreteStrategyA</span> <span class="p">:</span> <span class="n">Strategy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AlgorithmInterface</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">ConcreteStrategyA</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>class ConcreteStrategyB : Strategy
-{
-  public override void AlgorithmInterface()
-  {
-      Console.WriteLine("ConcreteStrategyB");
-  }
-}</p>
+<span class="k">class</span> <span class="nc">ConcreteStrategyB</span> <span class="p">:</span> <span class="n">Strategy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AlgorithmInterface</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">ConcreteStrategyB</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>class ConcreteStrategyC : Strategy
-{
-  public override void AlgorithmInterface()
-  {
-     Console.WriteLine("ConcreteStrategyC");
-  }
-}~~~ 
-Now let’s create a context of this behaviour</p>
+<span class="k">class</span> <span class="nc">ConcreteStrategyC</span> <span class="p">:</span> <span class="n">Strategy</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AlgorithmInterface</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">ConcreteStrategyC</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;);</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>Now let’s create a context of this behaviour</p>
 
-<p>~~~ c#<br />
-class Context
-{
-  private Strategy _strategy;</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Context</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">Strategy</span> <span class="n">_strategy</span><span class="p">;</span>
 
-<p>// Constructor
-  public Context(Strategy strategy)
-  {
-     this._strategy = strategy;
-  }</p>
+  <span class="c1">// Constructor
+</span>  <span class="k">public</span> <span class="nf">Context</span><span class="p">(</span><span class="n">Strategy</span> <span class="n">strategy</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="n">_strategy</span> <span class="p">=</span> <span class="n">strategy</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>public void ContextInterface()
-  {
-     _strategy.AlgorithmInterface();
-  }
-}~~~ 
-When we crate instance of this Class we pass the strategy implementation that will be selected. Last part of the program is the Program Class that will connect everything together.</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">ContextInterface</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="n">_strategy</span><span class="p">.</span><span class="nf">AlgorithmInterface</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>When we crate instance of this Class we pass the strategy implementation that will be selected. Last part of the program is the Program Class that will connect everything together.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main()
-  {
-    Context context;
-    context = new Context(new ConcreteStrategyA());
-    context.ContextInterface();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">Context</span> <span class="n">context</span><span class="p">;</span>
+    <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Context</span><span class="p">(</span><span class="k">new</span> <span class="nf">ConcreteStrategyA</span><span class="p">());</span>
+    <span class="n">context</span><span class="p">.</span><span class="nf">ContextInterface</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>context = new Context(new ConcreteStrategyB());
-context.ContextInterface();
+    <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Context</span><span class="p">(</span><span class="k">new</span> <span class="nf">ConcreteStrategyB</span><span class="p">());</span>
+    <span class="n">context</span><span class="p">.</span><span class="nf">ContextInterface</span><span class="p">();</span>
 
-context = new Context(new ConcreteStrategyC());
-context.ContextInterface();   } }~~~ 
+    <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Context</span><span class="p">(</span><span class="k">new</span> <span class="nf">ConcreteStrategyC</span><span class="p">());</span>
+    <span class="n">context</span><span class="p">.</span><span class="nf">ContextInterface</span><span class="p">();</span>
+  <span class="p">}</span>
 </code></pre>
 </div>
 

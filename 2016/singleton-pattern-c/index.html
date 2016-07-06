@@ -180,19 +180,21 @@
        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
- <span class="p">}~~~</span> 
-<span class="n">This</span> <span class="n">Singleton</span> <span class="k">class</span> <span class="nc">contains</span> <span class="k">private</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Class</span><span class="err"> </span><span class="n">instance</span><span class="p">.</span> <span class="n">Those</span><span class="err"> </span><span class="n">keywords</span> <span class="n">are</span> <span class="n">very</span> <span class="n">important</span><span class="p">,</span> <span class="n">Private</span> <span class="n">makes</span> <span class="n">the</span> <span class="n">instance</span> <span class="n">accessible</span> <span class="n">only</span> <span class="k">from</span> <span class="n">current</span> <span class="k">class</span><span class="err">(</span> <span class="nc">Instance</span> <span class="n">getter</span><span class="p">)</span> <span class="err"> </span><span class="n">what</span> <span class="n">prevents</span> <span class="n">other</span> <span class="k">class</span><span class="nc">es</span> <span class="k">from</span> <span class="n">accessing</span> <span class="n">it</span> <span class="k">in</span> <span class="n">not</span> <span class="n">safe</span> <span class="n">way</span><span class="p">.</span> <span class="n">Static</span> <span class="n">makes</span> <span class="n">it</span> <span class="n">shared</span> <span class="n">across</span> <span class="n">all</span> <span class="n">instances</span><span class="p">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">find</span> <span class="n">more</span> <span class="n">about</span> <span class="n">statics</span><span class="p">,&lt;</span><span class="n">a</span> <span class="n">href</span><span class="p">=</span><span class="s">"https://indiedevart.wordpress.com/2016/06/14/c-statics/"</span><span class="p">&gt;</span> <span class="n">here</span><span class="p">&lt;/</span><span class="n">a</span><span class="p">&gt;.</span>
 
-<span class="n">Constructor</span> <span class="n">of</span> <span class="k">this</span> <span class="k">class</span><span class="err">(</span> <span class="nc">Singleton</span><span class="p">()</span> <span class="p">)</span> <span class="k">is</span> <span class="k">private</span><span class="p">,</span> <span class="n">and</span> <span class="n">its</span> <span class="n">called</span> <span class="k">from</span> <span class="n">Instance</span> <span class="n">getter</span><span class="p">,</span> <span class="k">if</span> <span class="n">its</span> <span class="n">not</span> <span class="n">created</span> <span class="n">yet</span><span class="p">.</span>
+</code></pre>
+</div>
 
-<span class="n">Instance</span> <span class="n">property</span> <span class="k">is</span> <span class="n">read</span> <span class="n">only</span> <span class="n">and</span> <span class="n">it</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">the</span> <span class="k">class</span><span class="err">,</span> <span class="nc">always</span> <span class="n">the</span> <span class="n">same</span> <span class="n">instance</span> <span class="k">for</span> <span class="n">all</span> <span class="n">calls</span><span class="p">.</span><span class="err"> </span><span class="n">If</span> <span class="n">you</span> <span class="n">don</span><span class="err">'</span><span class="n">t</span> <span class="n">know</span> <span class="n">how</span> <span class="k">get</span><span class="p">{}</span> <span class="n">works</span><span class="p">,</span> <span class="n">check</span> <span class="n">my</span> <span class="n">post</span> <span class="n">about</span> <span class="n">it</span> <span class="p">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="p">=</span><span class="s">"https://indiedevart.wordpress.com/2016/06/11/c-properties/"</span><span class="p">&gt;</span><span class="err"> </span><span class="n">here</span><span class="p">&lt;/</span><span class="n">a</span><span class="p">&gt;.</span>
+<p>This Singleton class contains private static Singleton Class instance. Those keywords are very important, Private makes the instance accessible only from current class( Instance getter)  what prevents other classes from accessing it in not safe way. Static makes it shared across all instances. You can find more about statics,<a href="https://indiedevart.wordpress.com/2016/06/14/c-statics/"> here</a>.</p>
 
-<span class="n">Here</span> <span class="k">is</span> <span class="n">thread</span> <span class="n">safety</span> <span class="n">version</span> <span class="n">of</span> <span class="k">this</span> <span class="n">Pattern</span><span class="p">,</span> <span class="n">It</span> <span class="n">prevents</span> <span class="k">from</span> <span class="n">creating</span> <span class="n">two</span> <span class="n">instances</span> <span class="n">when</span> <span class="n">getter</span> <span class="k">is</span> <span class="n">called</span> <span class="k">from</span> <span class="n">multiple</span> <span class="n">threads</span><span class="p">.</span>
+<p>Constructor of this class( Singleton() ) is private, and its called from Instance getter, if its not created yet.</p>
 
-<span class="n">First</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="k">add</span> <span class="kt">object</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">responsible</span> <span class="k">for</span> <span class="n">handling</span> <span class="n">multiple</span> <span class="n">thread</span> <span class="n">access</span><span class="p">.</span>
+<p>Instance property is read only and it returns the instance of the class, always the same instance for all calls. If you don’t know how get{} works, check my post about it <a href="https://indiedevart.wordpress.com/2016/06/11/c-properties/"> here</a>.</p>
 
-<span class="p">~~~</span> <span class="n">c</span><span class="err">#</span>  
+<p>Here is thread safety version of this Pattern, It prevents from creating two instances when getter is called from multiple threads.</p>
 
+<p>First we need to add object that will be responsible for handling multiple thread access.</p>
+
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code>
 <span class="k">private</span><span class="err"> </span><span class="k">static</span><span class="err"> </span><span class="k">readonly</span><span class="err"> </span><span class="kt">object</span><span class="err"> </span><span class="n">padlock</span><span class="err"> </span><span class="p">=</span><span class="err"> </span><span class="k">new</span><span class="err"> </span><span class="kt">object</span><span class="p">();</span>
 
 </code></pre>
@@ -200,21 +202,22 @@
 
 <p>New we need to add one condition to Instance parameter that will lock the firs thread that is accessing it.</p>
 
-<p>~~~ c#<br />
-public static Singleton Instance
-    {
-        get
-        {
-            lock (padlock)
-            {
-                if (instance == null)
-                {
-                    instance = new Singleton();
-                }
-                return instance;
-            }
-        }
-    }~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+<span class="err">    </span><span class="p">{</span>
+<span class="err">        </span><span class="k">get</span>
+<span class="err">        </span><span class="p">{</span>
+<span class="err">            </span><span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
+<span class="err">            </span><span class="p">{</span>
+<span class="err">                </span><span class="k">if</span><span class="err"> </span><span class="p">(</span><span class="n">instance</span><span class="err"> </span><span class="p">==</span><span class="err"> </span><span class="k">null</span><span class="p">)</span>
+<span class="err">                </span><span class="p">{</span>
+<span class="err">                    </span><span class="n">instance</span><span class="err"> </span><span class="p">=</span><span class="err"> </span><span class="k">new</span> <span class="nf">Singleton</span><span class="p">();</span>
+<span class="err">                </span><span class="p">}</span>
+<span class="err">                </span><span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+<span class="err">            </span><span class="p">}</span>
+<span class="err">        </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 <blockquote>All these implementations share four common characteristics, however:

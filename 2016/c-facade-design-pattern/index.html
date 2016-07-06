@@ -199,61 +199,61 @@
 
 <p>First lets create Move Subclass that contains two methods each method returns a string.</p>
 
-<p>~~~ c#<br />
-internal class Move
-{
-  public string FindPlayer()
-  {
-     return "Finding player’s location ";
-  }</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">internal</span> <span class="k">class</span> <span class="nc">Move</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindPlayer</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Finding</span> <span class="n">player</span><span class="err">'</span><span class="n">s</span> <span class="n">location</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
 
-<p>public string MoveToPlayer()
-  {
-     return "Now I’m moving ";
-  }
-}~~~ 
-<strong> internal</strong> keyword means that class is accessible from within the current assembly.</p>
+  <span class="k">public</span> <span class="kt">string</span> <span class="nf">MoveToPlayer</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Now</span> <span class="n">I</span><span class="err">'</span><span class="n">m</span> <span class="n">moving</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p><strong> internal</strong> keyword means that class is accessible from within the current assembly.</p>
 
 <p>Second subclass will be very similar</p>
 
-<p>~~~ c#<br />
-internal class Speak
-{
- public string SpeakToplayer()
- {
-    return "Hi! How are You";
- }
-}~~~</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">internal</span> <span class="k">class</span> <span class="nc">Speak</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="kt">string</span> <span class="nf">SpeakToplayer</span><span class="p">()</span>
+ <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Hi</span><span class="p">!</span> <span class="n">How</span> <span class="n">are</span> <span class="n">You</span><span class="p">&amp;</span><span class="n">quot</span><span class="p">;;</span>
+ <span class="p">}</span>
+</code></pre>
+</div>
 
 <p> </p>
 
 <p>Now lets implement the Facade Pattern into EnemyFacade Class.</p>
 
-<p>~~~ c#<br />
-class EnemyFacade
-{
-  Move a = new Move();
-  Speak b = new Speak();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EnemyFacade</span>
+<span class="p">{</span>
+  <span class="n">Move</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Move</span><span class="p">();</span>
+  <span class="n">Speak</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Speak</span><span class="p">();</span>
 
-<p>public void Interact()
-  {
-    Console.WriteLine(a.FindPlayer());
-    Console.WriteLine(a.MoveToPlayer());
-    Console.WriteLine(b.SpeakToplayer());
-  }
-}~~~ 
-You need to create instances of each subclass in order to call the methods. My methods returns string variable so i can print result straight to the console.</p>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Interact</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">FindPlayer</span><span class="p">());</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">MoveToPlayer</span><span class="p">());</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="nf">SpeakToplayer</span><span class="p">());</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+<p>You need to create instances of each subclass in order to call the methods. My methods returns string variable so i can print result straight to the console.</p>
 
 <p>Last part of code will be our client class that  calls the Facade method.</p>
 
-<p>~~~ c#<br />
-class Program
-{
-  static void Main(string[] args)
-  {
-    EnemyFacade facade = new EnemyFacade();</p>
+<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">EnemyFacade</span> <span class="n">facade</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EnemyFacade</span><span class="p">();</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>facade.Interact();   } }~~~ 
+    <span class="n">facade</span><span class="p">.</span><span class="nf">Interact</span><span class="p">();</span>
+  <span class="p">}</span>
 </code></pre>
 </div>
 
