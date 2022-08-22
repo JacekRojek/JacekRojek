@@ -3,6 +3,11 @@
 ## I'm a JS Developer
 
 <!-- [![Website](https://img.shields.io/website?label=m-portfolio&style=for-the-badge&url=https://jacekrojek.github.io/JacekRojek-Portfolio/)](https://jacekrojek.github.io/JacekRojek-Portfolio/) -->
+<!-- TODO: -->
+<!-- - workshops -->
+<!-- - datascience tools -->
+<!-- - talks -->
+<!-- - kaggle link -->
 
 [![linkedin](https://brand.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg "LinkedIn")](https://www.linkedin.com/in/jacek-rojek-b7a396105/)
 
